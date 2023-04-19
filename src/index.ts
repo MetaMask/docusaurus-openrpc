@@ -2,7 +2,7 @@
  * See https://v2.docusaurus.io/docs/lifecycle-apis if you need more help!
  */
 
-import { Plugin, LoadContext } from '@docusaurus/types'
+import { Plugin, LoadContext } from '@docusaurus/types';
 
 /**
  * Put your plugin's options in here.
@@ -13,14 +13,14 @@ import { Plugin, LoadContext } from '@docusaurus/types'
  */
 export type MyPluginOptions = {
   // this option will either be undefined or a boolean
-  someOption?: boolean
-}
+  someOption?: boolean;
+};
 
 /**
  * The type of data your plugin loads.
  * This is set to never because the example doesn't load any data.
  */
-export type MyPluginLoadableContent = never
+export type MyPluginLoadableContent = never;
 
 /**
  * Plugin Description.
