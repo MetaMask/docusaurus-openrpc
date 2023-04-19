@@ -42,10 +42,10 @@ module.exports = {
   // bump this back up to 80% when we have more tests
   coverageThreshold: {
     global: {
-      branches: 28,
-      functions: 28,
-      lines: 28,
-      statements: 28,
+      branches: 47.36,
+      functions: 28.57,
+      lines: 46.09,
+      statements: 46.09,
     },
   },
 
