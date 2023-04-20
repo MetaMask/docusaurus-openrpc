@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
+    "build:watch": "yarn build --watch",
     "build:clean": "rimraf dist && yarn build",
     "lint": "yarn lint:eslint && yarn lint:misc --check && yarn lint:dependencies && yarn lint:changelog",
     "lint:changelog": "auto-changelog validate",
@@ -70,5 +71,8 @@
     "allowScripts": {
       "@lavamoat/preinstall-always-fail": false
     }
+  },
+  "dependencies": {
+    "@open-rpc/schema-utils-js": "^1.16.1"
   }
 }
