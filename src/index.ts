@@ -5,6 +5,7 @@
 import { Plugin, LoadContext } from '@docusaurus/types';
 import { OpenrpcDocument } from '@open-rpc/meta-schema';
 import { parseOpenRPCDocument } from '@open-rpc/schema-utils-js';
+
 import openRPCToMarkdown from './openrpc-to-mdx';
 
 /**
@@ -50,19 +51,23 @@ export default function myPlugin(
       return document;
     },
 
-    async contentLoaded({ content, actions }) {
+    contentLoaded({ content, actions }) {
       const markdown = openRPCToMarkdown(content);
-      actions.addRoute({
-        path: '/api-reference',
-        component: '@theme/DocItem',
-        exact: true,
-        modules: {
-          metadata: {
-            unversionedId: '',
-          },
-          content: await actions.createData('api-reference.md', markdown),
-        },
-      });
+      actions
+        .createData('api-reference.md', markdown)
+        .then((data) => {
+          actions.addRoute({
+            path: '/api-reference',
+            component: '@theme/DocItem',
+            exact: true,
+            modules: {
+              content: data,
+            },
+          });
+        })
+        .catch((error) => {
+          throw error;
+        });
     },
 
     // async postBuild(props) {

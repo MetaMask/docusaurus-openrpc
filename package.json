@@ -11,8 +11,8 @@
   ],
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
-    "build:watch": "yarn build --watch",
     "build:clean": "rimraf dist && yarn build",
+    "build:watch": "yarn build --watch",
     "lint": "yarn lint:eslint && yarn lint:misc --check && yarn lint:dependencies && yarn lint:changelog",
     "lint:changelog": "auto-changelog validate",
     "lint:dependencies": "depcheck",
@@ -22,6 +22,9 @@
     "prepack": "./scripts/prepack.sh",
     "test": "jest && jest-it-up",
     "test:watch": "jest --watch"
+  },
+  "dependencies": {
+    "@open-rpc/schema-utils-js": "^1.16.1"
   },
   "devDependencies": {
     "@docusaurus/types": "^2.0.0-alpha.70",
@@ -71,8 +74,5 @@
     "allowScripts": {
       "@lavamoat/preinstall-always-fail": false
     }
-  },
-  "dependencies": {
-    "@open-rpc/schema-utils-js": "^1.16.1"
   }
 }
