@@ -8,12 +8,9 @@
 
 import { Plugin, LoadContext } from '@docusaurus/types';
 import { OpenrpcDocument } from '@open-rpc/meta-schema';
-
 import { parseOpenRPCDocument } from '@open-rpc/schema-utils-js';
 
 import openRPCToMarkdown from './openrpc-to-mdx';
-
-import {compile} from '@mdx-js/mdx'
 
 // import {compile} from '@mdx-js/mdx'
 
