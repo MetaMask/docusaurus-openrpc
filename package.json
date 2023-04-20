@@ -24,13 +24,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@docusaurus/module-type-aliases": "^2.4.0",
     "@docusaurus/plugin-content-docs": "^2.4.0",
-    "@docusaurus/theme-common": "^2.4.0",
-    "@docusaurus/utils": "^2.4.0",
-    "@mdx-js/mdx": "^2.3.0",
-    "@mdx-js/react": "^2.3.0",
-    "@mdx-js/runtime": "^1.6.22",
     "@open-rpc/schema-utils-js": "^1.16.1"
   },
   "devDependencies": {
