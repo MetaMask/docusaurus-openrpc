@@ -48,7 +48,6 @@ export default function myPlugin(
   context: LoadContext,
   options: MyPluginOptions,
 ): Plugin<MyPluginLoadableContent> {
-  console.log(context);
   return {
     // change this to something unique, or caches may conflict!
     name: 'docusaurus-openrpc',
@@ -65,7 +64,6 @@ export default function myPlugin(
         .createData('openrpc.json', JSON.stringify(content))
         .then(async (openrpcJSONPath) => {
           const foo = openRPCToMarkdown(content);
-          console.log(foo);
           const openrpcMarkdownPath = await actions.createData(
             'openrpcMarkdown.mdx',
             foo.toString(),

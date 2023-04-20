@@ -52,11 +52,13 @@ const renderSchema = (
     } else {
       compositionString += `\n${indentation}- Array of`;
     }
-    compositionString += renderSchema(
-      schema.items as JSONSchemaObject,
-      indentationLevel + 1,
-      true,
-    );
+    if (schema.items && schema.items.length > 0) {
+      compositionString += renderSchema(
+        schema.items as JSONSchemaObject,
+        indentationLevel + 1,
+        true,
+      );
+    }
   } else if (schema.type === 'string' && addDashType && schema.title) {
     compositionString = `\n${indentation}- ${schema.title}  \`string\``;
   }
@@ -211,9 +213,8 @@ const renderContentDescriptor = (
   if (param.summary) {
     markdown += `${param.summary}`;
   } else if (param.description) {
-    markdown += `${index === undefined ? '' : ' '.repeat(2)} ${
-      param.description
-    }`;
+    markdown += `${index === undefined ? '' : ' '.repeat(2)} ${param.description
+      }`;
   }
 
   if (param.schema) {
