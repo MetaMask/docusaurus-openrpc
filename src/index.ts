@@ -1,12 +1,23 @@
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-require-imports */
 /**
  * See https://v2.docusaurus.io/docs/lifecycle-apis if you need more help!
  */
 
 import { Plugin, LoadContext } from '@docusaurus/types';
 import { OpenrpcDocument } from '@open-rpc/meta-schema';
+
 import { parseOpenRPCDocument } from '@open-rpc/schema-utils-js';
 
 import openRPCToMarkdown from './openrpc-to-mdx';
+
+import {compile} from '@mdx-js/mdx'
+
+// import {compile} from '@mdx-js/mdx'
+
+// import openRPCToMarkdown from './openrpc-to-mdx';
 
 /**
  * Put your plugin's options in here.
@@ -19,6 +30,8 @@ export type MyPluginOptions = {
   // either a file path, or uri to a document.
   openrpcDocument: string;
   outfile: string;
+  path: string;
+  sidebarPath: string;
 };
 
 /**
@@ -37,9 +50,8 @@ export type MyPluginLoadableContent = OpenrpcDocument;
 export default function myPlugin(
   context: LoadContext,
   options: MyPluginOptions,
-): Plugin<MyPluginLoadableContent, MyPluginOptions> {
+): Plugin<MyPluginLoadableContent> {
   console.log(context);
-  console.log(options);
   return {
     // change this to something unique, or caches may conflict!
     name: 'docusaurus-openrpc',
@@ -52,17 +64,25 @@ export default function myPlugin(
     },
 
     contentLoaded({ content, actions }) {
-      const markdown = openRPCToMarkdown(content);
       actions
-        .createData('api-reference.md', markdown)
-        .then((data) => {
+        .createData('openrpc.json', JSON.stringify(content))
+        .then(async (openrpcJSONPath) => {
+          const foo = openRPCToMarkdown(content);
+          console.log(foo);
+          const openrpcMarkdownPath = await actions.createData(
+            'openrpcMarkdown.mdx',
+            foo.toString(),
+          );
+
           actions.addRoute({
-            path: '/api-reference',
-            component: '@theme/DocItem',
-            exact: true,
+            path: options.path,
+            component: '@theme/OpenRPCDocItem',
             modules: {
-              content: data,
+              // propName -> JSON file path
+              openrpcDocument: openrpcJSONPath,
+              openrpcMarkdown: openrpcMarkdownPath,
             },
+            exact: true,
           });
         })
         .catch((error) => {
@@ -89,14 +109,11 @@ export default function myPlugin(
     //   ]
     // },
 
-    /*
-    You most likely won't need this right away either.
-
     getThemePath() {
+      return './theme';
       // Returns the path to the directory where the theme components can
       // be found.
     },
-    */
 
     getClientModules() {
       // Return an array of paths to the modules that are to be imported
