@@ -3,6 +3,9 @@
  */
 
 import { Plugin, LoadContext } from '@docusaurus/types';
+import { OpenrpcDocument } from '@open-rpc/meta-schema';
+import { parseOpenRPCDocument } from '@open-rpc/schema-utils-js';
+import openRPCToMarkdown from './openrpc-to-mdx';
 
 /**
  * Put your plugin's options in here.
@@ -12,15 +15,16 @@ import { Plugin, LoadContext } from '@docusaurus/types';
  * solution like it if you need to validate options.
  */
 export type MyPluginOptions = {
-  // this option will either be undefined or a boolean
-  someOption?: boolean;
+  // either a file path, or uri to a document.
+  openrpcDocument: string;
+  outfile: string;
 };
 
 /**
  * The type of data your plugin loads.
  * This is set to never because the example doesn't load any data.
  */
-export type MyPluginLoadableContent = never;
+export type MyPluginLoadableContent = OpenrpcDocument;
 
 /**
  * Plugin Description.
@@ -37,21 +41,29 @@ export default function myPlugin(
   console.log(options);
   return {
     // change this to something unique, or caches may conflict!
-    name: 'docusaurus-plugin-example',
+    name: 'docusaurus-openrpc',
 
-    /*
-     * THIS IS COMMENTED OUT BECAUSE IT IS HARD TO UNDERSTAND FOR BEGINNERS.
-     * FEEL FREE TO USE IF YOU KNOW WHAT YOU ARE DOING!
     async loadContent() {
       // The loadContent hook is executed after siteConfig and env has been loaded.
       // You can return a JavaScript object that will be passed to contentLoaded hook.
+      const document = await parseOpenRPCDocument(options.openrpcDocument);
+      return document;
     },
 
-    async contentLoaded({content, actions}) {
-      // The contentLoaded hook is done after loadContent hook is done.
-      // `actions` are set of functional API provided by Docusaurus (e.g. addRoute)
+    async contentLoaded({ content, actions }) {
+      const markdown = openRPCToMarkdown(content);
+      actions.addRoute({
+        path: '/api-reference',
+        component: '@theme/DocItem',
+        exact: true,
+        modules: {
+          metadata: {
+            unversionedId: '',
+          },
+          content: await actions.createData('api-reference.md', markdown),
+        },
+      });
     },
-    */
 
     // async postBuild(props) {
     // After docusaurus <build> finish.
