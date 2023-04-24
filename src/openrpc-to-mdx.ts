@@ -213,8 +213,9 @@ const renderContentDescriptor = (
   if (param.summary) {
     markdown += `${param.summary}`;
   } else if (param.description) {
-    markdown += `${index === undefined ? '' : ' '.repeat(2)} ${param.description
-      }`;
+    markdown += `${index === undefined ? '' : ' '.repeat(2)} ${
+      param.description
+    }`;
   }
 
   if (param.schema) {

@@ -40,12 +40,12 @@ export type MyPluginLoadableContent = OpenrpcDocument;
 /**
  * Plugin Description.
  *
- * @param context - Docusaurus LoadContext.
+ * @param _ - Docusaurus LoadContext. Not used.
  * @param options - Plugin Options.
  * @returns Plugin - Docusaurus Plugin.
  */
 export default function myPlugin(
-  context: LoadContext,
+  _: LoadContext,
   options: MyPluginOptions,
 ): Plugin<MyPluginLoadableContent> {
   return {
