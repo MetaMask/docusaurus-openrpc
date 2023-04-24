@@ -23,19 +23,17 @@ import openRPCToMarkdown from './openrpc-to-mdx';
  * This is only for development. You will need to implement Joi or a
  * solution like it if you need to validate options.
  */
-export type MyPluginOptions = {
+export type DocusaurusOpenRPCOptions = {
   // either a file path, or uri to a document.
   openrpcDocument: string;
-  outfile: string;
   path: string;
-  sidebarPath: string;
 };
 
 /**
  * The type of data your plugin loads.
  * This is set to never because the example doesn't load any data.
  */
-export type MyPluginLoadableContent = OpenrpcDocument;
+export type DocusaurusOpenRPCContent = OpenrpcDocument;
 
 /**
  * Plugin Description.
@@ -44,10 +42,10 @@ export type MyPluginLoadableContent = OpenrpcDocument;
  * @param options - Plugin Options.
  * @returns Plugin - Docusaurus Plugin.
  */
-export default function myPlugin(
+export default function DocusaurusOpenRPC(
   _: LoadContext,
-  options: MyPluginOptions,
-): Plugin<MyPluginLoadableContent> {
+  options: DocusaurusOpenRPCOptions,
+): Plugin<DocusaurusOpenRPCContent> {
   return {
     // change this to something unique, or caches may conflict!
     name: 'docusaurus-openrpc',
