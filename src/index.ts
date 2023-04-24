@@ -42,7 +42,7 @@ export type DocusaurusOpenRPCContent = OpenrpcDocument;
  * @param options - Plugin Options.
  * @returns Plugin - Docusaurus Plugin.
  */
-export default function DocusaurusOpenRPC(
+export default function docusaurusOpenRpc(
   _: LoadContext,
   options: DocusaurusOpenRPCOptions,
 ): Plugin<DocusaurusOpenRPCContent> {
