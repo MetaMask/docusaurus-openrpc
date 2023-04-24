@@ -99,10 +99,12 @@ export default function myPlugin(
     //   }
     // },
 
-    // getPathsToWatch() {
-    //   return [
-    //   ]
-    // },
+    getPathsToWatch() {
+      if (options.openrpcDocument.startsWith('https')) { return []; }
+      return [
+        options.openrpcDocument
+      ]
+    },
 
     getThemePath() {
       return './theme';
