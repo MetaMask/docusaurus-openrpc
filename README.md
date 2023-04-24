@@ -2,11 +2,11 @@
 
 A Docusaurus plugin for [OpenRPC](https://open-rpc.org).
 
-
 ### How to use the plugin
 
 1. install `@metamask/docusaurus-openrpc`
 2. add the plugin to your docusaurus config:
+
 ```
 [
       "@metamask/docusaurus-openrpc",
