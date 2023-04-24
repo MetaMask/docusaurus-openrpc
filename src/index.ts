@@ -1,7 +1,3 @@
-/* eslint-disable import/no-dynamic-require */
-/* eslint-disable no-restricted-globals */
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable @typescript-eslint/no-require-imports */
 /**
  * See https://v2.docusaurus.io/docs/lifecycle-apis if you need more help!
  */
