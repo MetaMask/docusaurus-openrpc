@@ -2,7 +2,10 @@
   "name": "@metamask/docusaurus-openrpc",
   "version": "0.0.2",
   "description": "A Docusaurus plugin for generating interactive documentation from your OpenRPC document",
-  "repository": "https://github.com/MetaMask/docusaurus-openrpc",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MetaMask/docusaurus-openrpc"
+  },
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
