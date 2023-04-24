@@ -100,10 +100,10 @@ export default function myPlugin(
     // },
 
     getPathsToWatch() {
-      if (options.openrpcDocument.startsWith('https')) { return []; }
-      return [
-        options.openrpcDocument
-      ]
+      if (options.openrpcDocument.startsWith('https')) {
+        return [];
+      }
+      return [options.openrpcDocument];
     },
 
     getThemePath() {
