@@ -5,7 +5,8 @@
 import { Plugin, LoadContext } from '@docusaurus/types';
 import { OpenrpcDocument } from '@open-rpc/meta-schema';
 import { parseOpenRPCDocument } from '@open-rpc/schema-utils-js';
-import path from 'path';
+// eslint-disable-next-line import/no-nodejs-modules
+import { join } from 'path';
 
 import openRPCToMarkdown from './openrpc-to-mdx';
 
@@ -35,7 +36,7 @@ export type DocusaurusOpenRPCContent = OpenrpcDocument;
 /**
  * Plugin Description.
  *
- * @param _ - Docusaurus LoadContext. Not used.
+ * @param context - Docusaurus LoadContext. Not used.
  * @param options - Plugin Options.
  * @returns Plugin - Docusaurus Plugin.
  */
@@ -64,7 +65,7 @@ export default function docusaurusOpenRpc(
             foo.toString(),
           );
 
-          const joinedPath = path.join(context.baseUrl, options.path);
+          const joinedPath = join(context.baseUrl, options.path);
           actions.addRoute({
             path: joinedPath,
             component: '@theme/OpenRPCDocItem',
