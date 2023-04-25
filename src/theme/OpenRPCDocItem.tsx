@@ -16,7 +16,7 @@ export default function Hello(props: any) {
         return {
           type: "link",
           label: method.name,
-          href: `/api-playground#${method.name}`,
+          href: `/api-playground#${method.name.toLowerCase()}`,
         }
       }),
       type: "category",
@@ -27,14 +27,32 @@ export default function Hello(props: any) {
 
   return (
     <Layout>
-      <div className="docPage_node_modules-@docusaurus-theme-classic-lib-theme-DocPage-Layout-styles-module">
-        <aside className="theme-doc-sidebar-container docSidebarContainer_node_modules-@docusaurus-theme-classic-lib-theme-DocPage-Layout-Sidebar-styles-module">
-          <div className="sidebarViewport_node_modules-@docusaurus-theme-classic-lib-theme-DocPage-Layout-Sidebar-styles-module">
+      <div style={{ display: "flex", width: "100%", flex: "1 0",  }}>
+        <aside
+          style={{
+            display: "block",
+            width: "var(--doc-sidebar-width)",
+            marginTop: "calc(-1 * var(--ifm-navbar-height))",
+            borderRight: "1px solid var(--ifm-toc-border-color)",
+            willChange: "width",
+            transition: "width var(--ifm-transition-fast) ease",
+            clipPath: "inset(0)",
+          }}
+          className="theme-doc-sidebar-container">
+          <div style={{
+            top: 0,
+            position: "sticky",
+            height: "100%",
+            maxHeight: "100vh",
+          }}>
             <DocSidebar path={props.route.path} sidebar={sidebar}/>
           </div>
         </aside>
 
-        <main className="docMainContainer_node_modules-@docusaurus-theme-classic-lib-theme-DocPage-Layout-Main-styles-module">
+        <main style={{
+          flexGrow: 1,
+          maxWidth: "calc(100% - var(--doc-sidebar-width))"
+        }}>
           <div className="container padding-top--md padding-bottom--lg">
             <div className="row">
               <div className="col col--12">
