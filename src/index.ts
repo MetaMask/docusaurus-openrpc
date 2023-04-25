@@ -5,6 +5,7 @@
 import { Plugin, LoadContext } from '@docusaurus/types';
 import { OpenrpcDocument } from '@open-rpc/meta-schema';
 import { parseOpenRPCDocument } from '@open-rpc/schema-utils-js';
+import path from 'path';
 
 import openRPCToMarkdown from './openrpc-to-mdx';
 
@@ -39,7 +40,7 @@ export type DocusaurusOpenRPCContent = OpenrpcDocument;
  * @returns Plugin - Docusaurus Plugin.
  */
 export default function docusaurusOpenRpc(
-  _: LoadContext,
+  context: LoadContext,
   options: DocusaurusOpenRPCOptions,
 ): Plugin<DocusaurusOpenRPCContent> {
   return {
@@ -63,8 +64,9 @@ export default function docusaurusOpenRpc(
             foo.toString(),
           );
 
+          const joinedPath = path.join(context.baseUrl, options.path);
           actions.addRoute({
-            path: options.path,
+            path: joinedPath,
             component: '@theme/OpenRPCDocItem',
             modules: {
               // propName -> JSON file path
