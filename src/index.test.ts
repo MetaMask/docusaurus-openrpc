@@ -1,4 +1,6 @@
 import { LoadContext } from '@docusaurus/types';
+import examples from '@open-rpc/examples';
+import { parseOpenRPCDocument } from '@open-rpc/schema-utils-js';
 
 import docusaurusOpenRpc from '.';
 
@@ -24,6 +26,89 @@ describe('docusaurus openrpc plugin', () => {
       const getPathsToWatch = plugin.getPathsToWatch as () => string[];
       const paths = getPathsToWatch();
       expect(paths).toStrictEqual([pathToOpenRPCDocument]);
+    });
+  });
+
+  describe('contentLoaded method', () => {
+    it('allows baseUrl to be "/"', async () => {
+      const plugin = docusaurusOpenRpc(
+        {
+          baseUrl: '/',
+        } as LoadContext,
+        {
+          openrpcDocument: 'https://anything.example',
+          path: 'foo',
+        },
+      );
+      const contentLoaded = plugin.contentLoaded as (
+        args: any,
+      ) => Promise<void>;
+
+      const addRoute = jest.fn();
+      await contentLoaded({
+        content: await parseOpenRPCDocument(examples.simpleMath as any),
+        actions: {
+          addRoute,
+          createData: async () => Promise.resolve(),
+        },
+      });
+      expect(addRoute).toHaveBeenCalledWith(
+        expect.objectContaining({ path: '/foo' }),
+      );
+    });
+
+    it('allows baseUrl to be set to anything', async () => {
+      const plugin = docusaurusOpenRpc(
+        {
+          baseUrl: '/foo/bar',
+        } as LoadContext,
+        {
+          openrpcDocument: 'https://anything.example',
+          path: 'baz',
+        },
+      );
+      const contentLoaded = plugin.contentLoaded as (
+        args: any,
+      ) => Promise<void>;
+
+      const addRoute = jest.fn();
+      await contentLoaded({
+        content: await parseOpenRPCDocument(examples.simpleMath as any),
+        actions: {
+          addRoute,
+          createData: async () => Promise.resolve(),
+        },
+      });
+      expect(addRoute).toHaveBeenCalledWith(
+        expect.objectContaining({ path: '/foo/bar/baz' }),
+      );
+    });
+
+    it('works with leading slash paths', async () => {
+      const plugin = docusaurusOpenRpc(
+        {
+          baseUrl: '/foo/bar',
+        } as LoadContext,
+        {
+          openrpcDocument: 'https://anything.example',
+          path: '/baz',
+        },
+      );
+      const contentLoaded = plugin.contentLoaded as (
+        args: any,
+      ) => Promise<void>;
+
+      const addRoute = jest.fn();
+      await contentLoaded({
+        content: await parseOpenRPCDocument(examples.simpleMath as any),
+        actions: {
+          addRoute,
+          createData: async () => Promise.resolve(),
+        },
+      });
+      expect(addRoute).toHaveBeenCalledWith(
+        expect.objectContaining({ path: '/foo/bar/baz' }),
+      );
     });
   });
 });

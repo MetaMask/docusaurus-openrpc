@@ -55,31 +55,28 @@ export default function docusaurusOpenRpc(
       return document;
     },
 
-    contentLoaded({ content, actions }) {
-      actions
-        .createData('openrpc.json', JSON.stringify(content))
-        .then(async (openrpcJSONPath) => {
-          const foo = openRPCToMarkdown(content);
-          const openrpcMarkdownPath = await actions.createData(
-            'openrpcMarkdown.mdx',
-            foo.toString(),
-          );
+    async contentLoaded({ content, actions }) {
+      const openrpcJSONPath = await actions.createData(
+        'openrpc.json',
+        JSON.stringify(content),
+      );
+      const foo = openRPCToMarkdown(content);
+      const openrpcMarkdownPath = await actions.createData(
+        'openrpcMarkdown.mdx',
+        foo.toString(),
+      );
 
-          const joinedPath = join(context.baseUrl, options.path);
-          actions.addRoute({
-            path: joinedPath,
-            component: '@theme/OpenRPCDocItem',
-            modules: {
-              // propName -> JSON file path
-              openrpcDocument: openrpcJSONPath,
-              openrpcMarkdown: openrpcMarkdownPath,
-            },
-            exact: true,
-          });
-        })
-        .catch((error) => {
-          throw error;
-        });
+      const joinedPath = join(context.baseUrl, options.path);
+      actions.addRoute({
+        path: joinedPath,
+        component: '@theme/OpenRPCDocItem',
+        modules: {
+          // propName -> JSON file path
+          openrpcDocument: openrpcJSONPath,
+          openrpcMarkdown: openrpcMarkdownPath,
+        },
+        exact: true,
+      });
     },
 
     // async postBuild(props) {

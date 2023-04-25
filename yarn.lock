@@ -2433,6 +2433,7 @@ __metadata:
     "@metamask/eslint-config-jest": ^11.0.0
     "@metamask/eslint-config-nodejs": ^11.0.1
     "@metamask/eslint-config-typescript": ^11.0.0
+    "@open-rpc/examples": ^1.7.0
     "@open-rpc/meta-schema": ^1.14.5
     "@open-rpc/schema-utils-js": ^1.16.1
     "@types/jest": ^28.1.6
@@ -2585,6 +2586,13 @@ __metadata:
     node-gyp: ^7.1.0
     read-package-json-fast: ^2.0.1
   checksum: 41924e7925452ac8e78d78bef5d65b3d58f86eea4481a453e11e3a9099504bfbfcf1f65d7f75d92170b846fa347d05424e58e617fb9c17b3efd87db599a0f46e
+  languageName: node
+  linkType: hard
+
+"@open-rpc/examples@npm:^1.7.0":
+  version: 1.7.0
+  resolution: "@open-rpc/examples@npm:1.7.0"
+  checksum: 7b7b1bbc0c7013bbb3092434ff422da764cfe5d022324dba38f33a83f7313d23de15b1bfabcbd7a8e0dc403bc936faedb40786bced19bb2c48841ad20afd5f63
   languageName: node
   linkType: hard
 
