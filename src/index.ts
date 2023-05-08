@@ -3,7 +3,7 @@
  */
 
 import { Plugin, LoadContext } from '@docusaurus/types';
-import { OpenrpcDocument } from '@open-rpc/meta-schema';
+import { MethodObject, OpenrpcDocument } from '@open-rpc/meta-schema';
 import { parseOpenRPCDocument } from '@open-rpc/schema-utils-js';
 // eslint-disable-next-line import/no-nodejs-modules
 import { join } from 'path';
@@ -60,22 +60,21 @@ export default function docusaurusOpenRpc(
         'openrpc.json',
         JSON.stringify(content),
       );
-      const foo = openRPCToMarkdown(content);
-      const openrpcMarkdownPath = await actions.createData(
-        'openrpcMarkdown.mdx',
-        foo.toString(),
-      );
 
-      const joinedPath = join(context.baseUrl, options.path);
-      actions.addRoute({
-        path: joinedPath,
-        component: '@theme/OpenRPCDocItem',
-        modules: {
-          // propName -> JSON file path
-          openrpcDocument: openrpcJSONPath,
-          openrpcMarkdown: openrpcMarkdownPath,
-        },
-        exact: true,
+      content.methods.forEach((method) => {
+        actions.addRoute({
+          path: join(
+            context.baseUrl,
+            options.path,
+            (method as MethodObject).name,
+          ),
+          component: '@theme/OpenRPCDocMethod',
+          modules: {
+            // propName -> JSON file path
+            openrpcDocument: openrpcJSONPath,
+          },
+          exact: true,
+        });
       });
     },
 
