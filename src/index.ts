@@ -88,10 +88,19 @@ export default function docusaurusOpenRpc(
     // docusaurus <start> finish
     // },
 
-    // configureWebpack(config, isServer) {
-    //   return {
-    //   }
-    // },
+    configureWebpack() {
+      return {
+        resolve: {
+          alias: {
+            process: 'process/browser',
+          },
+          fallback: {
+            path: require.resolve("path-browserify"),
+            process: require.resolve('process/browser'),
+          }
+        }
+      }
+    },
 
     getPathsToWatch() {
       if (options.openrpcDocument.startsWith('https')) {
