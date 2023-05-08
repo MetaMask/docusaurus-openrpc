@@ -6,8 +6,11 @@ import {
 import Layout from '@theme/Layout';
 const MDXContent = require('@theme/MDXContent').default;
 import {MethodObject} from '@open-rpc/meta-schema';
+import OpenRPCDocumentation from '@open-rpc/docs-react';
 
-export default function Hello(props: any) {
+(window as any).process = { cwd: () => '' };
+
+export default function OpenRPCDocItem(props: any) {
   const sidebar: Sidebar = [
     {
       label: "OpenRPC",
@@ -56,9 +59,10 @@ export default function Hello(props: any) {
           <div className="container padding-top--md padding-bottom--lg">
             <div className="row">
               <div className="col col--12">
-                <MDXContent>
-                  <props.openrpcMarkdown></props.openrpcMarkdown>
-                </MDXContent>
+                <OpenRPCDocumentation schema={props.openrpcDocument} />
+                {/* <MDXContent>
+                    <props.openrpcMarkdown></props.openrpcMarkdown>
+                    </MDXContent> */}
               </div>
             </div>
           </div>
