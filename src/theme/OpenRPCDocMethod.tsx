@@ -1,3 +1,8 @@
+(window as any).process = {
+  cwd: () => '',
+  env: {}
+};
+
 import React from "react";
 const DocSidebar = require("@theme/DocSidebar").default;
 import {
@@ -8,7 +13,6 @@ const MDXContent = require('@theme/MDXContent').default;
 import {MethodObject} from '@open-rpc/meta-schema';
 import {Method} from '@open-rpc/docs-react';
 
-(window as any).process = { cwd: () => '' };
 
 export default function OpenRPCDocItem(props: any) {
   const sidebar: Sidebar = [

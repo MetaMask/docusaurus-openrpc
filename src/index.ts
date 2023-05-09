@@ -91,11 +91,12 @@ export default function docusaurusOpenRpc(
       return {
         resolve: {
           alias: {
-            process: 'process/browser',
+            process: 'process/browser'
           },
           fallback: {
             path: require.resolve("path-browserify"),
             process: require.resolve('process/browser'),
+            buffer: require.resolve("buffer/")
           }
         }
       }
@@ -130,9 +131,10 @@ export default function docusaurusOpenRpc(
     // },
 
     injectHtmlTags() {
-      // Inject head and/or body HTML tags.
       return {
-        // extra html tags here
+        headTags: [
+          '<link rel="stylesheet" href="https://unpkg.com/@stoplight/elements/styles.min.css">'
+        ]
       };
     },
   };
