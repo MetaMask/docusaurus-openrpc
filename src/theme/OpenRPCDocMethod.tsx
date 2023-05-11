@@ -11,8 +11,7 @@ import {
 import Layout from '@theme/Layout';
 const MDXContent = require('@theme/MDXContent').default;
 import {MethodObject} from '@open-rpc/meta-schema';
-import {Method} from '@open-rpc/docs-react';
-
+import { InteractiveMethod, Method} from '@open-rpc/docs-react';
 
 export default function OpenRPCDocItem(props: any) {
   const sidebar: Sidebar = [
@@ -68,11 +67,20 @@ export default function OpenRPCDocItem(props: any) {
         }}>
           <div className="container padding-top--md padding-bottom--lg">
             <div className="row">
-              <div className="col col--12">
+              <div className="col col--7">
                 {!method &&
                   <div>Index</div>
                 }
                 {method && <Method method={method} />}
+              </div>
+
+              <div id="interactive-box" className="col col--5" style={{
+                maxHeight: "calc(100vh - (var(--ifm-navbar-height) + 2rem))",
+                overflowY: "auto",
+                position: "sticky",
+                top: "calc(var(--ifm-navbar-height) + 1rem)"
+              }}>
+                {method && <InteractiveMethod method={method} />}
               </div>
             </div>
           </div>
