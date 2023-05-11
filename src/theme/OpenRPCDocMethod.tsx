@@ -93,10 +93,8 @@ export default function OpenRPCDocItem(props: any) {
     const name = parts[parts.length - 1];
     return m.name.toLowerCase() === name.toLowerCase();
   })
-  const examples = method.examples || getExamplesFromMethod(method);
-  console.log('exmaplesfrommethod', examples, method);
-  const [selectedExamplePairing, setSelectedExamplePairing] = React.useState<ExamplePairingObject | undefined>(examples[0]);
-  console.log('selectedExamplePairing', selectedExamplePairing);
+  method.examples = method.examples || getExamplesFromMethod(method);
+  const [selectedExamplePairing, setSelectedExamplePairing] = React.useState<ExamplePairingObject | undefined>(method.examples[0]);
 
   return (
     <Layout>
@@ -132,7 +130,7 @@ export default function OpenRPCDocItem(props: any) {
                 {!method &&
                   <div>Index</div>
                 }
-                {method && <Method method={method} onExamplePairingChange={(examplePairing: ExamplePairingObject) => setSelectedExamplePairing(examplePairing)}/>}
+                {method && <Method method={method} components={{CodeBlock}} onExamplePairingChange={(examplePairing: ExamplePairingObject) => setSelectedExamplePairing(examplePairing)}/>}
               </div>
 
               <div id="interactive-box" className="col col--5" style={{
