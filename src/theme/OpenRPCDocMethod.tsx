@@ -10,8 +10,65 @@ import {
 } from "@docusaurus/plugin-content-docs/src/sidebars/types";
 import Layout from '@theme/Layout';
 const MDXContent = require('@theme/MDXContent').default;
-import {MethodObject} from '@open-rpc/meta-schema';
+import {ExamplePairingObject, MethodObject, ContentDescriptorObject} from '@open-rpc/meta-schema';
 import { InteractiveMethod, Method} from '@open-rpc/docs-react';
+const CodeBlock = require('@theme/CodeBlock').default;
+
+const getExamplesFromMethod = (method?: MethodObject): ExamplePairingObject[] => {
+  if (!method) { return []; }
+  if (!method.params) { return []; }
+  const examples: ExamplePairingObject[] = [];
+
+  (method.params as ContentDescriptorObject[]).forEach((param, index: number) => {
+    if (param.schema && param.schema.examples && param.schema.examples.length > 0) {
+      param.schema.examples.forEach((ex: any, i: number) => {
+        const example = examples[i];
+        if (example === undefined) {
+          examples.push({
+            name: "generated-example",
+            params: [
+              {
+                name: param.name,
+                value: ex,
+              },
+            ],
+            result: {
+              name: "example-result",
+              value: null,
+            },
+          });
+        } else {
+          example.params.push({
+            name: param.name,
+            value: ex,
+          });
+        }
+      });
+    }
+  });
+  const methodResult = method.result as ContentDescriptorObject;
+  if (methodResult && methodResult.schema && methodResult.schema.examples && methodResult.schema.examples.length > 0) {
+    methodResult.schema.examples.forEach((ex: any, i: number) => {
+      const example = examples[i];
+      if (example === undefined) {
+        examples.push({
+          name: "generated-example",
+          params: [],
+          result: {
+            name: methodResult.name,
+            value: ex,
+          },
+        });
+      } else {
+        example.result = {
+          name: methodResult.name,
+          value: ex,
+        };
+      }
+    });
+  }
+  return examples;
+};
 
 export default function OpenRPCDocItem(props: any) {
   const sidebar: Sidebar = [
@@ -36,6 +93,10 @@ export default function OpenRPCDocItem(props: any) {
     const name = parts[parts.length - 1];
     return m.name.toLowerCase() === name.toLowerCase();
   })
+  const examples = method.examples || getExamplesFromMethod(method);
+  console.log('exmaplesfrommethod', examples, method);
+  const [selectedExamplePairing, setSelectedExamplePairing] = React.useState<ExamplePairingObject | undefined>(examples[0]);
+  console.log('selectedExamplePairing', selectedExamplePairing);
 
   return (
     <Layout>
@@ -71,7 +132,7 @@ export default function OpenRPCDocItem(props: any) {
                 {!method &&
                   <div>Index</div>
                 }
-                {method && <Method method={method} />}
+                {method && <Method method={method} onExamplePairingChange={(examplePairing: ExamplePairingObject) => setSelectedExamplePairing(examplePairing)}/>}
               </div>
 
               <div id="interactive-box" className="col col--5" style={{
@@ -80,7 +141,7 @@ export default function OpenRPCDocItem(props: any) {
                 position: "sticky",
                 top: "calc(var(--ifm-navbar-height) + 1rem)"
               }}>
-                {method && <InteractiveMethod method={method} />}
+                {method && <InteractiveMethod method={method} components={{CodeBlock}} selectedExamplePairing={selectedExamplePairing as ExamplePairingObject}/>}
               </div>
             </div>
           </div>
