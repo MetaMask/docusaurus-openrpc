@@ -92,7 +92,9 @@
       "@open-rpc/docs-react>@stoplight/mosaic>@fortawesome/fontawesome-svg-core>@fortawesome/fontawesome-common-types": false,
       "@open-rpc/docs-react>@material-ui/core>jss": false,
       "@docusaurus/core>@babel/runtime-corejs3>core-js-pure": false,
-      "@docusaurus/core>core-js": false
+      "@docusaurus/core>core-js": false,
+      "docusaurus-open-rpc-docs-react>@stoplight/mosaic>@fortawesome/fontawesome-svg-core": false,
+      "docusaurus-open-rpc-docs-react>@stoplight/mosaic>@fortawesome/fontawesome-svg-core>@fortawesome/fontawesome-common-types": false
     }
   }
 }
