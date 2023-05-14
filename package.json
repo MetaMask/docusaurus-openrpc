@@ -26,11 +26,6 @@
     "test": "jest && jest-it-up",
     "test:watch": "jest --watch"
   },
-  "peerDependencies": {
-    "@docusaurus/core": "2.x",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
-  },
   "dependencies": {
     "@docusaurus/plugin-content-docs": "^2.4.0",
     "@open-rpc/schema-utils-js": "^1.16.1",
@@ -72,6 +67,11 @@
     "ts-jest": "^29.1.0",
     "ts-node": "^10.7.0",
     "typescript": "^5.0.4"
+  },
+  "peerDependencies": {
+    "@docusaurus/core": "2.x",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "packageManager": "yarn@3.2.1",
   "engines": {

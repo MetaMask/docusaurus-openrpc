@@ -1,14 +1,13 @@
+/* eslint-disable no-restricted-globals */
 /**
  * See https://v2.docusaurus.io/docs/lifecycle-apis if you need more help!
  */
 
-import { Plugin, LoadContext } from '@docusaurus/types';
+import { Plugin as DocusaurusPlugin, LoadContext } from '@docusaurus/types';
 import { MethodObject, OpenrpcDocument } from '@open-rpc/meta-schema';
 import { parseOpenRPCDocument } from '@open-rpc/schema-utils-js';
 // eslint-disable-next-line import/no-nodejs-modules
 import { join } from 'path';
-
-import openRPCToMarkdown from './openrpc-to-mdx';
 
 // import {compile} from '@mdx-js/mdx'
 
@@ -43,7 +42,7 @@ export type DocusaurusOpenRPCContent = OpenrpcDocument;
 export default function docusaurusOpenRpc(
   context: LoadContext,
   options: DocusaurusOpenRPCOptions,
-): Plugin<DocusaurusOpenRPCContent> {
+): DocusaurusPlugin<DocusaurusOpenRPCContent> {
   return {
     // change this to something unique, or caches may conflict!
     name: 'docusaurus-openrpc',
@@ -91,15 +90,15 @@ export default function docusaurusOpenRpc(
       return {
         resolve: {
           alias: {
-            process: 'process/browser'
+            process: 'process/browser',
           },
           fallback: {
-            path: require.resolve("path-browserify"),
+            path: require.resolve('path-browserify'),
             process: require.resolve('process/browser'),
-            buffer: require.resolve("buffer/")
-          }
-        }
-      }
+            buffer: require.resolve('buffer/'),
+          },
+        },
+      };
     },
 
     getPathsToWatch() {
@@ -133,8 +132,8 @@ export default function docusaurusOpenRpc(
     injectHtmlTags() {
       return {
         headTags: [
-          '<link rel="stylesheet" href="https://unpkg.com/@stoplight/elements/styles.min.css">'
-        ]
+          '<link rel="stylesheet" href="https://unpkg.com/@stoplight/elements/styles.min.css">',
+        ],
       };
     },
   };
