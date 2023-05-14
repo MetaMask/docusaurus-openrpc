@@ -4,6 +4,7 @@
     "@metamask/auto-changelog",
     "@types/*",
     "prettier-plugin-packagejson",
+    "process",
     "ts-node",
     "typedoc",
     "@theme/*",
