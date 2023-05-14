@@ -52,8 +52,9 @@ describe('docusaurus openrpc plugin', () => {
           createData: async () => Promise.resolve(),
         },
       });
-      expect(addRoute).toHaveBeenCalledWith(
-        expect.objectContaining({ path: '/foo' }),
+      expect(addRoute).toHaveBeenNthCalledWith(
+        2,
+        expect.objectContaining({ path: '/foo/subtraction' }),
       );
     });
 
@@ -79,8 +80,9 @@ describe('docusaurus openrpc plugin', () => {
           createData: async () => Promise.resolve(),
         },
       });
-      expect(addRoute).toHaveBeenCalledWith(
-        expect.objectContaining({ path: '/foo/bar/baz' }),
+      expect(addRoute).toHaveBeenNthCalledWith(
+        2,
+        expect.objectContaining({ path: '/foo/bar/baz/subtraction' }),
       );
     });
 
@@ -106,8 +108,9 @@ describe('docusaurus openrpc plugin', () => {
           createData: async () => Promise.resolve(),
         },
       });
-      expect(addRoute).toHaveBeenCalledWith(
-        expect.objectContaining({ path: '/foo/bar/baz' }),
+      expect(addRoute).toHaveBeenNthCalledWith(
+        2,
+        expect.objectContaining({ path: '/foo/bar/baz/subtraction' }),
       );
     });
   });
