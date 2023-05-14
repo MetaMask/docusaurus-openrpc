@@ -11,7 +11,7 @@ import {
 import Layout from '@theme/Layout';
 const MDXContent = require('@theme/MDXContent').default;
 import {ExamplePairingObject, MethodObject, ContentDescriptorObject} from '@open-rpc/meta-schema';
-import { InteractiveMethod, Method} from '@open-rpc/docs-react';
+import { InteractiveMethod, Method} from 'docusaurus-open-rpc-docs-react';
 const CodeBlock = require('@theme/CodeBlock').default;
 
 const getExamplesFromMethod = (method?: MethodObject): ExamplePairingObject[] => {
