@@ -4,11 +4,11 @@
  */
 
 import { Plugin as DocusaurusPlugin, LoadContext } from '@docusaurus/types';
-import { MethodObject, OpenrpcDocument } from '@open-rpc/meta-schema';
+import { MethodObject, Methods, OpenrpcDocument } from '@open-rpc/meta-schema';
 import { parseOpenRPCDocument } from '@open-rpc/schema-utils-js';
 // eslint-disable-next-line import/no-nodejs-modules
 import { join } from 'path';
-
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
 // import {compile} from '@mdx-js/mdx'
 
 // import openRPCToMarkdown from './openrpc-to-mdx';
@@ -51,6 +51,16 @@ export default function docusaurusOpenRpc(
       // The loadContent hook is executed after siteConfig and env has been loaded.
       // You can return a JavaScript object that will be passed to contentLoaded hook.
       const document = await parseOpenRPCDocument(options.openrpcDocument);
+
+      const methods: Methods = document.methods.reduce((memo, method: any) => {
+        if (memo.find((bMethod: any) => bMethod.name === method.name)) {
+          return memo;
+        }
+        return [...memo, method];
+      }, [] as Methods);
+
+      document.methods = methods as any;
+
       return document;
     },
 
@@ -59,6 +69,7 @@ export default function docusaurusOpenRpc(
         'openrpc.json',
         JSON.stringify(content),
       );
+
 
       content.methods.forEach((method) => {
         actions.addRoute({
@@ -88,6 +99,9 @@ export default function docusaurusOpenRpc(
 
     configureWebpack() {
       return {
+        plugins: [
+          new NodePolyfillPlugin()
+        ],
         resolve: {
           alias: {
             process: 'process/browser',
