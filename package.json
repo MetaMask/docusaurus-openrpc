@@ -30,6 +30,7 @@
     "@docusaurus/plugin-content-docs": "^2.4.0",
     "@open-rpc/schema-utils-js": "^1.16.1",
     "docusaurus-open-rpc-docs-react": "0.0.0-development",
+    "node-polyfill-webpack-plugin": "^2.0.1",
     "path-browserify": "^1.0.1",
     "process": "^0.11.10"
   },
