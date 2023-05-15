@@ -93,6 +93,7 @@ export default function docusaurusOpenRpc(
             process: 'process/browser',
           },
           fallback: {
+            fs: false,
             path: require.resolve('path-browserify'),
             process: require.resolve('process/browser'),
             buffer: require.resolve('buffer/'),
