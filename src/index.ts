@@ -102,17 +102,17 @@ export default function docusaurusOpenRpc(
         plugins: [
           new NodePolyfillPlugin()
         ],
-        resolve: {
-          alias: {
-            process: 'process/browser',
-          },
-          fallback: {
-            fs: false,
-            path: require.resolve('path-browserify'),
-            process: require.resolve('process/browser'),
-            buffer: require.resolve('buffer/'),
-          },
-        },
+        // resolve: {
+        //   alias: {
+        //     process: 'process/browser',
+        //   },
+        //   fallback: {
+        //     fs: false,
+        //     path: require.resolve('path-browserify'),
+        //     process: require.resolve('process/browser'),
+        //     buffer: require.resolve('buffer/'),
+        //   },
+        // },
       };
     },
 
