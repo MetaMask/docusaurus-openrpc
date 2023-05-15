@@ -1,15 +1,9 @@
-(window as any).process = {
-  cwd: () => '',
-  env: {}
-};
-
 import React from "react";
 const DocSidebar = require("@theme/DocSidebar").default;
 import {
   Sidebar,
 } from "@docusaurus/plugin-content-docs/src/sidebars/types";
 import Layout from '@theme/Layout';
-const MDXContent = require('@theme/MDXContent').default;
 import {ExamplePairingObject, MethodObject, ContentDescriptorObject} from '@open-rpc/meta-schema';
 import { InteractiveMethod, Method} from 'docusaurus-open-rpc-docs-react';
 const CodeBlock = require('@theme/CodeBlock').default;
