@@ -103,6 +103,11 @@ export default function docusaurusOpenRpc(
     configureWebpack() {
       return {
         plugins: [new NodePolyfillPlugin()],
+        resolve: {
+          fallback: {
+            fs: false,
+          },
+        },
       };
     },
 
