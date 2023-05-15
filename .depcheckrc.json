@@ -4,6 +4,7 @@
     "@metamask/auto-changelog",
     "@types/*",
     "prettier-plugin-packagejson",
+    "node-polyfill-webpack-plugin",
     "process",
     "ts-node",
     "typedoc",
