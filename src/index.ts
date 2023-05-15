@@ -6,9 +6,10 @@
 import { Plugin as DocusaurusPlugin, LoadContext } from '@docusaurus/types';
 import { MethodObject, Methods, OpenrpcDocument } from '@open-rpc/meta-schema';
 import { parseOpenRPCDocument } from '@open-rpc/schema-utils-js';
+import NodePolyfillPlugin from 'node-polyfill-webpack-plugin';
 // eslint-disable-next-line import/no-nodejs-modules
 import { join } from 'path';
-const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
+
 // import {compile} from '@mdx-js/mdx'
 
 // import openRPCToMarkdown from './openrpc-to-mdx';
@@ -52,12 +53,15 @@ export default function docusaurusOpenRpc(
       // You can return a JavaScript object that will be passed to contentLoaded hook.
       const document = await parseOpenRPCDocument(options.openrpcDocument);
 
-      const methods: Methods = document.methods.reduce((memo, method: any) => {
-        if (memo.find((bMethod: any) => bMethod.name === method.name)) {
-          return memo;
-        }
-        return [...memo, method];
-      }, [] as Methods);
+      const methods: Methods = document.methods.reduce<Methods>(
+        (memo, method: any) => {
+          if (memo.find((bMethod: any) => bMethod.name === method.name)) {
+            return memo;
+          }
+          return [...memo, method];
+        },
+        [],
+      );
 
       document.methods = methods as any;
 
@@ -69,7 +73,6 @@ export default function docusaurusOpenRpc(
         'openrpc.json',
         JSON.stringify(content),
       );
-
 
       content.methods.forEach((method) => {
         actions.addRoute({
@@ -99,20 +102,7 @@ export default function docusaurusOpenRpc(
 
     configureWebpack() {
       return {
-        plugins: [
-          new NodePolyfillPlugin()
-        ],
-        // resolve: {
-        //   alias: {
-        //     process: 'process/browser',
-        //   },
-        //   fallback: {
-        //     fs: false,
-        //     path: require.resolve('path-browserify'),
-        //     process: require.resolve('process/browser'),
-        //     buffer: require.resolve('buffer/'),
-        //   },
-        // },
+        plugins: [new NodePolyfillPlugin()],
       };
     },
 
