@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.8]
+### Uncategorized
+- remove comments
+- remove extra webpack resolutions
+- Fix build issue
+
 ## [0.0.7]
 ### Uncategorized
 - Add node-polyfill to depcheck
@@ -124,7 +130,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added semicolons back
 - Initial Commit
 
-[Unreleased]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.0.7...HEAD
+[Unreleased]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.0.8...HEAD
+[0.0.8]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.0.7...v0.0.8
 [0.0.7]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.0.6...v0.0.7
 [0.0.6]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.0.5...v0.0.6
 [0.0.5]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.0.4...v0.0.5
