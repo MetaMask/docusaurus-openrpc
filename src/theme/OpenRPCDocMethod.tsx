@@ -6,6 +6,7 @@ import {
 import Layout from '@theme/Layout';
 import {ExamplePairingObject, MethodObject, ContentDescriptorObject} from '@open-rpc/meta-schema';
 import { InteractiveMethod, Method} from 'docusaurus-open-rpc-docs-react';
+import "./OpenRPCDocMethod.css";
 const CodeBlock = require('@theme/CodeBlock').default;
 
 const getExamplesFromMethod = (method?: MethodObject): ExamplePairingObject[] => {
@@ -114,10 +115,7 @@ export default function OpenRPCDocItem(props: any) {
           </div>
         </aside>
 
-        <main style={{
-          flexGrow: 1,
-          maxWidth: "calc(100% - var(--doc-sidebar-width))"
-        }}>
+        <main className="docMainContainer" style={{width: "100%"}}>
           <div className="container padding-top--md padding-bottom--lg">
             <div className="row">
               <div className="col col--7">
@@ -127,12 +125,7 @@ export default function OpenRPCDocItem(props: any) {
                 {method && <Method method={method} components={{CodeBlock}} onExamplePairingChange={(examplePairing: ExamplePairingObject) => setSelectedExamplePairing(examplePairing)}/>}
               </div>
 
-              <div id="interactive-box" className="col col--5" style={{
-                maxHeight: "calc(100vh - (var(--ifm-navbar-height) + 2rem))",
-                overflowY: "auto",
-                position: "sticky",
-                top: "calc(var(--ifm-navbar-height) + 1rem)"
-              }}>
+              <div id="interactive-box" className="col col--5 interactive-right-sidebar">
                 {method && <InteractiveMethod method={method} components={{CodeBlock}} selectedExamplePairing={selectedExamplePairing as ExamplePairingObject}/>}
               </div>
             </div>
