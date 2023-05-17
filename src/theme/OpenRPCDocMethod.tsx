@@ -125,7 +125,7 @@ export default function OpenRPCDocItem(props: any) {
                 {method && <Method method={method} components={{CodeBlock}} onExamplePairingChange={(examplePairing: ExamplePairingObject) => setSelectedExamplePairing(examplePairing)}/>}
               </div>
 
-              <div id="interactive-box" className="col col--5 interactive-right-sidebar">
+              <div id="interactive-box" className="col col--5 interactive-right-sidebar table-of-contents__left-border">
                 {method && <InteractiveMethod method={method} components={{CodeBlock}} selectedExamplePairing={selectedExamplePairing as ExamplePairingObject}/>}
               </div>
             </div>
