@@ -115,7 +115,7 @@ export default function OpenRPCDocItem(props: any) {
           </div>
         </aside>
 
-        <main className="docMainContainer" >
+        <main className="docMainContainer">
           <div className="container padding-top--md padding-bottom--lg">
             <div className="row">
               <div className="col col--7">
