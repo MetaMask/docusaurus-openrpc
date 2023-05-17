@@ -13,9 +13,9 @@
     "dist/"
   ],
   "scripts": {
-    "build": "tsc --project tsconfig.build.json",
+    "build": "tsc --project tsconfig.build.json && cp src/theme/OpenRPCDocMethod.css dist/theme/OpenRPCDocMethod.css",
     "build:clean": "rimraf dist && yarn build",
-    "build:watch": "yarn build --watch",
+    "build:watch": "yarn build && tsc --project tsconfig.build.json --watch",
     "lint": "yarn lint:eslint && yarn lint:misc --check && yarn lint:dependencies && yarn lint:changelog",
     "lint:changelog": "auto-changelog validate",
     "lint:dependencies": "depcheck",
