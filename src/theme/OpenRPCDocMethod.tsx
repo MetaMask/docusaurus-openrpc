@@ -93,7 +93,7 @@ export default function OpenRPCDocItem(props: any) {
 
   return (
     <Layout>
-      <div style={{ display: "flex", width: "100%", flex: "1 0",  }}>
+      <div style={{ display: "flex", width: "100%", flex: "1 0",  }} className="docusaurus-openrpc">
         <aside
           style={{
             display: "block",
@@ -115,7 +115,7 @@ export default function OpenRPCDocItem(props: any) {
           </div>
         </aside>
 
-        <main className="docMainContainer" style={{width: "100%"}}>
+        <main className="docMainContainer" >
           <div className="container padding-top--md padding-bottom--lg">
             <div className="row">
               <div className="col col--7">
@@ -125,7 +125,7 @@ export default function OpenRPCDocItem(props: any) {
                 {method && <Method method={method} components={{CodeBlock}} onExamplePairingChange={(examplePairing: ExamplePairingObject) => setSelectedExamplePairing(examplePairing)}/>}
               </div>
 
-              <div id="interactive-box" className="col col--5 interactive-right-sidebar table-of-contents__left-border">
+              <div id="interactive-box" className="col col--5 interactive-right-sidebar table-of-contents__left-border thin-scrollbar">
                 {method && <InteractiveMethod method={method} components={{CodeBlock}} selectedExamplePairing={selectedExamplePairing as ExamplePairingObject}/>}
               </div>
             </div>

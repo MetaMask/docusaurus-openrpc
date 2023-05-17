@@ -14,3 +14,8 @@
   }
 }
 
+@media screen and (max-width: 996px) {
+  .docusaurus-openrpc .theme-doc-sidebar-container {
+    display: none !important;
+  }
+}
