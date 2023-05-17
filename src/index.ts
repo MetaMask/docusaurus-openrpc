@@ -79,7 +79,7 @@ export default function docusaurusOpenRpc(
           path: join(
             context.baseUrl,
             options.path,
-            (method as MethodObject).name,
+            (method as MethodObject).name.toLowerCase(),
           ),
           component: '@theme/OpenRPCDocMethod',
           modules: {
