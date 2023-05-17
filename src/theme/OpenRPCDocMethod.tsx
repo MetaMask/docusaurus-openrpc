@@ -6,6 +6,7 @@ import {
 import Layout from '@theme/Layout';
 import {ExamplePairingObject, MethodObject, ContentDescriptorObject} from '@open-rpc/meta-schema';
 import { InteractiveMethod, Method} from 'docusaurus-open-rpc-docs-react';
+import { join } from 'path';
 import "./OpenRPCDocMethod.css";
 const CodeBlock = require('@theme/CodeBlock').default;
 
@@ -65,16 +66,16 @@ const getExamplesFromMethod = (method?: MethodObject): ExamplePairingObject[] =>
   return examples;
 };
 
-export default function OpenRPCDocItem(props: any) {
+export default function OpenRPCDocMethod(props: any) {
   const sidebar: Sidebar = [
     {
       label: "OpenRPC",
       description: "OpenRPC is a specification for machine-readable JSON-RPC services. It allows for automatic code generation, documentation, and discovery.",
-      items: props.openrpcDocument.methods.map((method: MethodObject) => {
+      items: props.propsFile.openrpcDocument.methods.map((method: MethodObject) => {
         return {
           type: "link",
           label: method.name,
-          href: `/api-playground/${method.name.toLowerCase()}`,
+          href: join(props.propsFile.path, method.name.toLowerCase()),
         }
       }),
       type: "category",
@@ -83,7 +84,7 @@ export default function OpenRPCDocItem(props: any) {
     }
   ];
 
-  const method = props.openrpcDocument.methods.find((m: MethodObject) => {
+  const method = props.propsFile.openrpcDocument.methods.find((m: MethodObject) => {
     const parts = props.route.path.split("/");
     const name = parts[parts.length - 1];
     return m.name.toLowerCase() === name.toLowerCase();

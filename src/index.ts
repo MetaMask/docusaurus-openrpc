@@ -69,9 +69,12 @@ export default function docusaurusOpenRpc(
     },
 
     async contentLoaded({ content, actions }) {
-      const openrpcJSONPath = await actions.createData(
-        'openrpc.json',
-        JSON.stringify(content),
+      const propsFilePath = await actions.createData(
+        'props.json',
+        JSON.stringify({
+          path: options.path,
+          openrpcDocument: content,
+        }),
       );
 
       content.methods.forEach((method) => {
@@ -84,7 +87,7 @@ export default function docusaurusOpenRpc(
           component: '@theme/OpenRPCDocMethod',
           modules: {
             // propName -> JSON file path
-            openrpcDocument: openrpcJSONPath,
+            propsFile: propsFilePath,
           },
           exact: true,
         });
