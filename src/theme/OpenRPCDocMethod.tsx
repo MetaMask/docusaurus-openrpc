@@ -67,22 +67,13 @@ const getExamplesFromMethod = (method?: MethodObject): ExamplePairingObject[] =>
 };
 
 export default function OpenRPCDocMethod(props: any) {
-  const sidebar: Sidebar = [
-    {
-      label: "OpenRPC",
-      description: "OpenRPC is a specification for machine-readable JSON-RPC services. It allows for automatic code generation, documentation, and discovery.",
-      items: props.propsFile.openrpcDocument.methods.map((method: MethodObject) => {
-        return {
-          type: "link",
-          label: method.name,
-          href: join(props.propsFile.path, method.name.toLowerCase()),
-        }
-      }),
-      type: "category",
-      collapsed: false,
-      collapsible: true,
+  const sidebar: Sidebar = props.propsFile.openrpcDocument.methods.map((method: MethodObject) => {
+    return {
+      type: "link",
+      label: method.name,
+      href: join(props.propsFile.path, method.name.toLowerCase()),
     }
-  ];
+  });
 
   const method = props.propsFile.openrpcDocument.methods.find((m: MethodObject) => {
     const parts = props.route.path.split("/");
