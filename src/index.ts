@@ -4,7 +4,7 @@
  */
 
 import { Plugin as DocusaurusPlugin, LoadContext } from '@docusaurus/types';
-import { MethodObject, Methods, OpenrpcDocument } from '@open-rpc/meta-schema';
+import { MethodObject, OpenrpcDocument } from '@open-rpc/meta-schema';
 import { parseOpenRPCDocument } from '@open-rpc/schema-utils-js';
 import NodePolyfillPlugin from 'node-polyfill-webpack-plugin';
 // eslint-disable-next-line import/no-nodejs-modules
