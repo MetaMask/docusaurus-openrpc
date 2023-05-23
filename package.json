@@ -29,7 +29,7 @@
   "dependencies": {
     "@docusaurus/plugin-content-docs": "^2.4.0",
     "@open-rpc/schema-utils-js": "^1.16.1",
-    "docusaurus-open-rpc-docs-react": "0.0.0-development",
+    "docusaurus-open-rpc-docs-react": "^0.0.1",
     "node-polyfill-webpack-plugin": "^2.0.1",
     "process": "^0.11.10"
   },

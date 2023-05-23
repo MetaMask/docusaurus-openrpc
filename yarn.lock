@@ -2498,7 +2498,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.43.0
     "@typescript-eslint/parser": ^5.43.0
     depcheck: ^1.4.3
-    docusaurus-open-rpc-docs-react: 0.0.0-development
+    docusaurus-open-rpc-docs-react: ^0.0.1
     eslint: ^8.27.0
     eslint-config-prettier: ^8.5.0
     eslint-plugin-import: ^2.26.0
@@ -6994,9 +6994,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"docusaurus-open-rpc-docs-react@npm:0.0.0-development":
-  version: 0.0.0-development
-  resolution: "docusaurus-open-rpc-docs-react@npm:0.0.0-development"
+"docusaurus-open-rpc-docs-react@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "docusaurus-open-rpc-docs-react@npm:0.0.1"
   dependencies:
     "@json-schema-tools/traverse": ^1.10.1
     "@open-rpc/examples": ^1.6.1
@@ -7018,7 +7018,7 @@ __metadata:
   peerDependencies:
     react: ^17.0.2
     react-dom: ^17.0.2
-  checksum: b0e705de458c1d99d18dae1619245a4a8214876f4e588b5f24589c3916376e374df361a12494bf9673b622a0735968db262aab4e4dceb22792803f28324a31f7
+  checksum: f6cdbff17ba996a96cdf99dd5680fbee79126a0cf94dffef48d6382238eb61082e448ac1357a04b7ee48539017a03d0673983bc6969b34da49c800c1101a27f8
   languageName: node
   linkType: hard
 
