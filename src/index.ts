@@ -52,19 +52,6 @@ export default function docusaurusOpenRpc(
       // The loadContent hook is executed after siteConfig and env has been loaded.
       // You can return a JavaScript object that will be passed to contentLoaded hook.
       const document = await parseOpenRPCDocument(options.openrpcDocument);
-
-      const methods: Methods = document.methods.reduce<Methods>(
-        (memo, method: any) => {
-          if (memo.find((bMethod: any) => bMethod.name === method.name)) {
-            return memo;
-          }
-          return [...memo, method];
-        },
-        [],
-      );
-
-      document.methods = methods as any;
-
       return document;
     },
 
