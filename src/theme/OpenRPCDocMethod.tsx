@@ -5,7 +5,7 @@ import {
 } from "@docusaurus/plugin-content-docs/src/sidebars/types";
 import Layout from '@theme/Layout';
 import {ExamplePairingObject, MethodObject, ContentDescriptorObject} from '@open-rpc/meta-schema';
-import { InteractiveMethod, Method} from 'docusaurus-open-rpc-docs-react';
+import { InteractiveMethod, Method} from '@metamask/open-rpc-docs-react';
 import { join } from 'path';
 import "./OpenRPCDocMethod.css";
 const CodeBlock = require('@theme/CodeBlock').default;
@@ -114,7 +114,7 @@ export default function OpenRPCDocMethod(props: any) {
                 {!method &&
                   <div>Index</div>
                 }
-                {method && <Method method={method} components={{CodeBlock}} onExamplePairingChange={(examplePairing: ExamplePairingObject) => setSelectedExamplePairing(examplePairing)}/>}
+                {method && <Method method={method} components={{CodeBlock}} onExamplePairingChange={(examplePairing: ExamplePairingObject | undefined) => setSelectedExamplePairing(examplePairing)}/>}
               </div>
 
               <div id="interactive-box" className="col col--5 interactive-right-sidebar table-of-contents__left-border thin-scrollbar">
