@@ -28,8 +28,8 @@
   },
   "dependencies": {
     "@docusaurus/plugin-content-docs": "^2.4.0",
+    "@metamask/open-rpc-docs-react": "^0.0.2",
     "@open-rpc/schema-utils-js": "^1.16.1",
-    "docusaurus-open-rpc-docs-react": "^0.0.1",
     "node-polyfill-webpack-plugin": "^2.0.1",
     "process": "^0.11.10"
   },
@@ -93,7 +93,9 @@
       "@docusaurus/core>@babel/runtime-corejs3>core-js-pure": false,
       "@docusaurus/core>core-js": false,
       "docusaurus-open-rpc-docs-react>@stoplight/mosaic>@fortawesome/fontawesome-svg-core": false,
-      "docusaurus-open-rpc-docs-react>@stoplight/mosaic>@fortawesome/fontawesome-svg-core>@fortawesome/fontawesome-common-types": false
+      "docusaurus-open-rpc-docs-react>@stoplight/mosaic>@fortawesome/fontawesome-svg-core>@fortawesome/fontawesome-common-types": false,
+      "@metamask/open-rpc-docs-react>@stoplight/mosaic>@fortawesome/fontawesome-svg-core": false,
+      "@metamask/open-rpc-docs-react>@stoplight/mosaic>@fortawesome/fontawesome-svg-core>@fortawesome/fontawesome-common-types": false
     }
   }
 }
