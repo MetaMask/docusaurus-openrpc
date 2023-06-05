@@ -3,12 +3,14 @@
  * See https://v2.docusaurus.io/docs/lifecycle-apis if you need more help!
  */
 
+import { LoadedVersion } from '@docusaurus/plugin-content-docs';
 import { Plugin as DocusaurusPlugin, LoadContext } from '@docusaurus/types';
-import { MethodObject, OpenrpcDocument } from '@open-rpc/meta-schema';
+import { docuHash, posixPath } from '@docusaurus/utils';
+import { MethodObject, Methods, OpenrpcDocument } from '@open-rpc/meta-schema';
 import { parseOpenRPCDocument } from '@open-rpc/schema-utils-js';
 import NodePolyfillPlugin from 'node-polyfill-webpack-plugin';
 // eslint-disable-next-line import/no-nodejs-modules
-import { join } from 'path';
+import path, { join } from 'path';
 
 // import {compile} from '@mdx-js/mdx'
 
@@ -22,6 +24,7 @@ import { join } from 'path';
  * solution like it if you need to validate options.
  */
 export type DocusaurusOpenRPCOptions = {
+  id: string;
   // either a file path, or uri to a document.
   openrpcDocument: string;
   path: string;
@@ -31,7 +34,10 @@ export type DocusaurusOpenRPCOptions = {
  * The type of data your plugin loads.
  * This is set to never because the example doesn't load any data.
  */
-export type DocusaurusOpenRPCContent = OpenrpcDocument;
+export type DocusaurusOpenRPCContent = {
+  openrpcDocument: OpenrpcDocument;
+  loadedVersions?: LoadedVersion[];
+};
 
 /**
  * Plugin Description.
@@ -44,6 +50,14 @@ export default function docusaurusOpenRpc(
   context: LoadContext,
   options: DocusaurusOpenRPCOptions,
 ): DocusaurusPlugin<DocusaurusOpenRPCContent> {
+  const { generatedFilesDir } = context;
+  const pluginDataDirRoot = path.join(
+    generatedFilesDir,
+    'docusaurus-plugin-content-docs',
+  );
+  const aliasedSource = (source: string) =>
+    `${posixPath(path.resolve(pluginDataDirRoot, options.id, source))}`;
+
   return {
     // change this to something unique, or caches may conflict!
     name: 'docusaurus-openrpc',
@@ -52,31 +66,53 @@ export default function docusaurusOpenRpc(
       // The loadContent hook is executed after siteConfig and env has been loaded.
       // You can return a JavaScript object that will be passed to contentLoaded hook.
       const document = await parseOpenRPCDocument(options.openrpcDocument);
-      return document;
+
+      const methods: Methods = document.methods.reduce<Methods>(
+        (memo, method: any) => {
+          if (memo.find((bMethod: any) => bMethod.name === method.name)) {
+            return memo;
+          }
+          return [...memo, method];
+        },
+        [],
+      );
+
+      document.methods = methods as any;
+
+      return {
+        openrpcDocument: document,
+      };
     },
 
     async contentLoaded({ content, actions }) {
+      const { openrpcDocument, loadedVersions } = content;
       const propsFilePath = await actions.createData(
         'props.json',
         JSON.stringify({
           path: options.path,
-          openrpcDocument: content,
+          openrpcDocument,
         }),
       );
-
-      content.methods.forEach((method) => {
-        actions.addRoute({
-          path: join(
-            context.baseUrl,
-            options.path,
-            (method as MethodObject).name.toLowerCase(),
-          ),
-          component: '@theme/OpenRPCDocMethod',
-          modules: {
-            // propName -> JSON file path
-            propsFile: propsFilePath,
-          },
-          exact: true,
+      loadedVersions?.forEach((version: LoadedVersion) => {
+        openrpcDocument.methods.forEach((method) => {
+          actions.addRoute({
+            path: join(
+              context.baseUrl,
+              options.path,
+              (method as MethodObject).name.toLowerCase(),
+            ),
+            component: '@theme/OpenRPCDocMethod',
+            modules: {
+              // propName -> JSON file path
+              propsFile: propsFilePath,
+              versionMetadata: aliasedSource(
+                `${docuHash(
+                  `version-${version.versionName}-metadata-prop`,
+                )}.json`,
+              ),
+            },
+            exact: true,
+          });
         });
       });
     },
