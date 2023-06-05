@@ -4,6 +4,7 @@ import {
   Sidebar,
 } from "@docusaurus/plugin-content-docs/src/sidebars/types";
 import Layout from '@theme/Layout';
+const {useDocRouteMetadata} = require('@docusaurus/theme-common/internal');
 import {ExamplePairingObject, MethodObject, ContentDescriptorObject} from '@open-rpc/meta-schema';
 import { InteractiveMethod, Method} from '@metamask/open-rpc-docs-react';
 import { join } from 'path';
@@ -67,13 +68,18 @@ const getExamplesFromMethod = (method?: MethodObject): ExamplePairingObject[] =>
 };
 
 export default function OpenRPCDocMethod(props: any) {
-  const sidebar: Sidebar = props.propsFile.openrpcDocument.methods.map((method: MethodObject) => {
+  const {versionMetadata} = props;
+
+  let sidebar: Sidebar = props.propsFile.openrpcDocument.methods.map((method: MethodObject) => {
     return {
       type: "link",
       label: method.name,
       href: join(props.propsFile.path, method.name.toLowerCase()),
     }
   });
+  if (versionMetadata) {
+    sidebar = Object.values(versionMetadata.docsSidebars)[0] as Sidebar;
+  }
 
   const method = props.propsFile.openrpcDocument.methods.find((m: MethodObject) => {
     const parts = props.route.path.split("/");
