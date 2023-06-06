@@ -93,6 +93,24 @@ export default function docusaurusOpenRpc(
           openrpcDocument,
         }),
       );
+      if (loadedVersions === undefined) {
+        openrpcDocument.methods.forEach((method) => {
+          actions.addRoute({
+            path: join(
+              context.baseUrl,
+              options.path,
+              (method as MethodObject).name.toLowerCase(),
+            ),
+            component: '@theme/OpenRPCDocMethod',
+            modules: {
+              // propName -> JSON file path
+              propsFile: propsFilePath,
+            },
+            exact: true,
+          });
+        });
+        return;
+      }
       loadedVersions?.forEach((version: LoadedVersion) => {
         openrpcDocument.methods.forEach((method) => {
           actions.addRoute({
