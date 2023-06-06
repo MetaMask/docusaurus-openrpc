@@ -1979,7 +1979,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/types@npm:2.4.0, @docusaurus/types@npm:^2.4.0":
+"@docusaurus/types@npm:2.4.0":
   version: 2.4.0
   resolution: "@docusaurus/types@npm:2.4.0"
   dependencies:
@@ -1998,7 +1998,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/types@npm:2.4.1":
+"@docusaurus/types@npm:2.4.1, @docusaurus/types@npm:^2.4.1":
   version: 2.4.1
   resolution: "@docusaurus/types@npm:2.4.1"
   dependencies:
@@ -2792,7 +2792,7 @@ __metadata:
   dependencies:
     "@docusaurus/plugin-content-docs": ^2.4.0
     "@docusaurus/theme-common": ^2.4.1
-    "@docusaurus/types": ^2.4.0
+    "@docusaurus/types": ^2.4.1
     "@docusaurus/utils": ^2.4.1
     "@lavamoat/allow-scripts": ^2.0.3
     "@metamask/auto-changelog": ^3.1.0
