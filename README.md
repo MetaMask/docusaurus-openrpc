@@ -2,21 +2,58 @@
 
 A Docusaurus plugin for [OpenRPC](https://open-rpc.org).
 
-### How to use the plugin
 
-1. install `@metamask/docusaurus-openrpc`
-2. add the plugin to your docusaurus config:
+### Installation
 
+```bash
+npm install @metamask/docusaurus-openrpc
 ```
+
+### Usage
+
+There are two ways to use this plugin
+
+#### 1. Use it as a standalone plugin
+
+Uses its own sidebar and path.
+
+To use the plugin as a standalone plugin, add the following to your `docusaurus.config.js` file:
+
+```js
 [
       "@metamask/docusaurus-openrpc",
-      /** @type {import('@docusaurus/plugin-content-docs').PluginOptions} */
       {
         path: "/api-playground",
         openrpcDocument: "./path/to/openrpc.json" // path or url to openrpc document.
       },
     ]
 ```
+
+#### 2. Use it as an enhanced plugin-content-docs plugin to preserve the existing sidebar
+
+To use the plugin as an enhanced plugin-content-docs plugin, add the following to your `docusaurus.config.js` file:
+
+```js
+    [
+      "@metamask/docusaurus-openrpc/dist/content-docs-enhanced-open-rpc",
+      ({
+        // @docusaurus/plugin-content-docs options
+        id: "default",
+        path: "wallet",
+        routeBasePath: "wallet",
+        sidebarPath: require.resolve("./wallet-sidebar.js"),
+        breadcrumbs: false,
+        remarkPlugins: [
+          require("remark-docusaurus-tabs"),
+        ],
+        // @docusaurus-openrpc plugin options
+        openrpcDocument: "https://metamask.github.io/api-specs/latest/openrpc.json",
+        openrpcPath: "reference",
+      }),
+    ],
+```
+
+
 
 ### Development
 
