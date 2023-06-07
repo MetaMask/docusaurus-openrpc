@@ -49,7 +49,11 @@ describe('docusaurus openrpc plugin', () => {
 
       const addRoute = jest.fn();
       await contentLoaded({
-        content: await parseOpenRPCDocument(examples.simpleMath as any),
+        content: {
+          openrpcDocument: await parseOpenRPCDocument(
+            examples.simpleMath as any,
+          ),
+        },
         actions: {
           addRoute,
           createData: async () => Promise.resolve(),
@@ -78,7 +82,11 @@ describe('docusaurus openrpc plugin', () => {
 
       const addRoute = jest.fn();
       await contentLoaded({
-        content: await parseOpenRPCDocument(examples.simpleMath as any),
+        content: {
+          openrpcDocument: await parseOpenRPCDocument(
+            examples.simpleMath as any,
+          ),
+        },
         actions: {
           addRoute,
           createData: async () => Promise.resolve(),
@@ -107,7 +115,11 @@ describe('docusaurus openrpc plugin', () => {
 
       const addRoute = jest.fn();
       await contentLoaded({
-        content: await parseOpenRPCDocument(examples.simpleMath as any),
+        content: {
+          openrpcDocument: await parseOpenRPCDocument(
+            examples.simpleMath as any,
+          ),
+        },
         actions: {
           addRoute,
           createData: async () => Promise.resolve(),

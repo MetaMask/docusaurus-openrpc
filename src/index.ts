@@ -51,10 +51,16 @@ export default function docusaurusOpenRpc(
   options: DocusaurusOpenRPCOptions,
 ): DocusaurusPlugin<DocusaurusOpenRPCContent> {
   const { generatedFilesDir } = context;
-  const pluginDataDirRoot = path.join(
-    generatedFilesDir,
-    'docusaurus-plugin-content-docs',
-  );
+
+  let pluginDataDirRoot: string;
+
+  if (generatedFilesDir) {
+    pluginDataDirRoot = path.join(
+      generatedFilesDir,
+      'docusaurus-plugin-content-docs',
+    );
+  }
+
   const aliasedSource = (source: string) =>
     `${posixPath(path.resolve(pluginDataDirRoot, options.id, source))}`;
 
