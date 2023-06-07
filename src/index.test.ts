@@ -8,6 +8,7 @@ describe('docusaurus openrpc plugin', () => {
   describe('files to watch method', () => {
     it('returns nothing when the openrpcDocument option is a url', () => {
       const plugin = docusaurusOpenRpc({} as LoadContext, {
+        id: 'foo',
         openrpcDocument: 'https://anything.example',
         path: 'foo',
       });
@@ -20,6 +21,7 @@ describe('docusaurus openrpc plugin', () => {
     it('returns the same path as openrpcDocument if its not a url', () => {
       const pathToOpenRPCDocument = '../foo/bar.baz';
       const plugin = docusaurusOpenRpc({} as LoadContext, {
+        id: 'foo',
         openrpcDocument: pathToOpenRPCDocument,
         path: 'foo',
       });
@@ -36,6 +38,7 @@ describe('docusaurus openrpc plugin', () => {
           baseUrl: '/',
         } as LoadContext,
         {
+          id: 'foo',
           openrpcDocument: 'https://anything.example',
           path: 'foo',
         },
@@ -64,6 +67,7 @@ describe('docusaurus openrpc plugin', () => {
           baseUrl: '/foo/bar',
         } as LoadContext,
         {
+          id: 'foo',
           openrpcDocument: 'https://anything.example',
           path: 'baz',
         },
@@ -92,6 +96,7 @@ describe('docusaurus openrpc plugin', () => {
           baseUrl: '/foo/bar',
         } as LoadContext,
         {
+          id: 'foo',
           openrpcDocument: 'https://anything.example',
           path: '/baz',
         },
