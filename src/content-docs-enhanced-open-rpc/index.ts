@@ -1,28 +1,44 @@
-const pluginContentDocs = require('@docusaurus/plugin-content-docs');
 import { PluginOptions } from '@docusaurus/plugin-content-docs';
+import { SidebarItem } from '@docusaurus/plugin-content-docs/src/sidebars/types';
+import { LoadContext } from '@docusaurus/types';
+import { MethodObject } from '@open-rpc/meta-schema';
 import { parseOpenRPCDocument } from '@open-rpc/schema-utils-js';
+// eslint-disable-next-line import/no-nodejs-modules
 import { join } from 'path';
 
 import openrpcPlugin from '..';
-import { LoadContext } from '@docusaurus/types';
-import { SidebarItem } from '@docusaurus/plugin-content-docs/src/sidebars/types';
-import { MethodObject } from '@open-rpc/meta-schema';
-export type DocusaurusOpenRPCOptions = {
-    id: string;
-    // either a file path, or uri to a document.
-    openrpcDocument: string;
-    openrpcPath: string;
-    path: string;
-  };
 
-async function docsPluginEnhanced(context: LoadContext, options: DocusaurusOpenRPCOptions) {
-  const docsPluginInstance: any = await pluginContentDocs.default(context, options as unknown as PluginOptions);
+// eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires, no-restricted-globals
+const pluginContentDocs = require('@docusaurus/plugin-content-docs');
+
+export type DocusaurusOpenRPCOptions = {
+  id: string;
+  // either a file path, or uri to a document.
+  openrpcDocument: string;
+  openrpcPath: string;
+  path: string;
+};
+
+/**
+ * Enhanced docs plugin that adds OpenRPC support.
+ *
+ * @param context - The load context.
+ * @param options - The plugin options.
+ */
+async function docsPluginEnhanced(
+  context: LoadContext,
+  options: DocusaurusOpenRPCOptions,
+) {
+  const docsPluginInstance: any = await pluginContentDocs.default(
+    context,
+    options as unknown as PluginOptions,
+  );
   if (docsPluginInstance === undefined) {
     throw new Error('docsPluginInstance is undefined');
   }
   const path = join(options.path, options.openrpcPath);
 
-  const openrpcPluginInstance: any = await openrpcPlugin(context, {
+  const openrpcPluginInstance: any = openrpcPlugin(context, {
     id: options.id,
     path,
     openrpcDocument: options.openrpcDocument,
@@ -42,32 +58,34 @@ async function docsPluginEnhanced(context: LoadContext, options: DocusaurusOpenR
       results.loadedVersions[0].sidebars = Object.keys(
         results.loadedVersions[0].sidebars,
       ).reduce((acc: any, key) => {
-        acc[key] = results.loadedVersions[0].sidebars[key].map((item: SidebarItem) => {
-          if (item.type === 'category') {
-            if (item.label === 'Reference') {
-              item.items.push({
-                type: 'category',
-                label: 'JSON-RPC',
-                collapsible: true,
-                collapsed: true,
-                items: openrpcDocument.methods.map((method) => {
-                  const href = join(
-                    context.baseUrl,
-                    options.path,
-                    options.openrpcPath,
-                    (method as MethodObject).name.toLowerCase(),
-                  );
-                  return {
-                    type: 'link',
-                    label: (method as MethodObject).name,
-                    href,
-                  };
-                }),
-              });
+        acc[key] = results.loadedVersions[0].sidebars[key].map(
+          (item: SidebarItem) => {
+            if (item.type === 'category') {
+              if (item.label === 'Reference') {
+                item.items.push({
+                  type: 'category',
+                  label: 'JSON-RPC',
+                  collapsible: true,
+                  collapsed: true,
+                  items: openrpcDocument.methods.map((method) => {
+                    const href = join(
+                      context.baseUrl,
+                      options.path,
+                      options.openrpcPath,
+                      (method as MethodObject).name.toLowerCase(),
+                    );
+                    return {
+                      type: 'link',
+                      label: (method as MethodObject).name,
+                      href,
+                    };
+                  }),
+                });
+              }
             }
-          }
-          return item;
-        });
+            return item;
+          },
+        );
         return acc;
       }, {});
       return results;
@@ -107,9 +125,8 @@ async function docsPluginEnhanced(context: LoadContext, options: DocusaurusOpenR
       return [...openrpcPaths, ...docsPaths];
     },
 
-
-    injectHtmlTags(context: any) {
-      return openrpcPluginInstance?.injectHtmlTags?.(context) ?? '';
+    injectHtmlTags(cxt: LoadContext) {
+      return openrpcPluginInstance?.injectHtmlTags?.(cxt) ?? '';
     },
   };
 }
@@ -123,7 +140,7 @@ const pluginExport = {
     };
     delete docOptions.openrpcDocument;
     delete docOptions.openrpcPath;
-    const returns = (pluginContentDocs as any).validateOptions({
+    const returns = pluginContentDocs.validateOptions({
       validate,
       options: docOptions,
     });
@@ -136,4 +153,4 @@ const pluginExport = {
 };
 
 export default docsPluginEnhanced;
-export const validateOptions = pluginExport.validateOptions;
+export const { validateOptions } = pluginExport;

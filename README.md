@@ -2,7 +2,6 @@
 
 A Docusaurus plugin for [OpenRPC](https://open-rpc.org).
 
-
 ### Installation
 
 ```bash
@@ -21,12 +20,12 @@ To use the plugin as a standalone plugin, add the following to your `docusaurus.
 
 ```js
 [
-      "@metamask/docusaurus-openrpc",
-      {
-        path: "/api-playground",
-        openrpcDocument: "./path/to/openrpc.json" // path or url to openrpc document.
-      },
-    ]
+  '@metamask/docusaurus-openrpc',
+  {
+    path: '/api-playground',
+    openrpcDocument: './path/to/openrpc.json', // path or url to openrpc document.
+  },
+];
 ```
 
 #### 2. Use it as an enhanced plugin-content-docs plugin to preserve the existing sidebar
@@ -52,8 +51,6 @@ To use the plugin as an enhanced plugin-content-docs plugin, add the following t
       }),
     ],
 ```
-
-
 
 ### Development
 
