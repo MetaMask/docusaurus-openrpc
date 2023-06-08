@@ -83,9 +83,20 @@ export default function OpenRPCDocMethod(props: any) {
 
   const method = props.propsFile.openrpcDocument.methods.find((m: MethodObject) => {
     const parts = props.route.path.split("/");
-    const name = parts[parts.length - 1];
+
+    if (parts.length < 2) { return false; }
+
+    let name = parts[parts.length - 1];
+
+    // deal with trailingSlash: true
+    if (name === "") {
+      name = parts[parts.length - 2];
+    }
+
     return m.name.toLowerCase() === name.toLowerCase();
   })
+
+  console.log('method=', method, props.route.path);
   method.examples = method.examples || getExamplesFromMethod(method);
   const [selectedExamplePairing, setSelectedExamplePairing] = React.useState<ExamplePairingObject | undefined>(method.examples[0]);
 
