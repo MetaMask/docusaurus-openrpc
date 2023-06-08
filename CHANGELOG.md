@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0]
+### Uncategorized
+- Fixed coverage thresholds
+- Fixed tests failing with content interface change
+- Fixed tests
+- Fixed linting
+- Added preset as alternative to classic preset
+- Changed version to be optional to allow both ways of usings the plugin + updated README to show usage of both ways
+- Changed enhanced plugin to be in this repo instead of metamask-docs
+- Added support for sidebar rendering
+
 ## [0.0.13]
 ### Uncategorized
 - Updated testing threshhold
@@ -159,7 +170,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added semicolons back
 - Initial Commit
 
-[Unreleased]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.0.13...HEAD
+[Unreleased]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.0.13...v0.1.0
 [0.0.13]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.0.12...v0.0.13
 [0.0.12]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.0.11...v0.0.12
 [0.0.11]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.0.10...v0.0.11
