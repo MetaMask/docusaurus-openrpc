@@ -14,8 +14,11 @@ const pluginContentDocs = require('@docusaurus/plugin-content-docs');
 export type DocusaurusOpenRPCOptions = {
   id: string;
   // either a file path, or uri to a document.
-  openrpcDocument: string;
-  openrpcPath: string;
+  openrpc: {
+    openrpcDocument: string;
+    path: string;
+    sidebarLabel: string;
+  }
   path: string;
 };
 
@@ -36,17 +39,17 @@ async function docsPluginEnhanced(
   if (docsPluginInstance === undefined) {
     throw new Error('docsPluginInstance is undefined');
   }
-  const path = join(options.path, options.openrpcPath);
+  const path = join(options.path, options.openrpc.path);
 
   const openrpcPluginInstance: any = openrpcPlugin(context, {
     id: options.id,
     path,
-    openrpcDocument: options.openrpcDocument,
+    openrpcDocument: options.openrpc.openrpcDocument,
   });
   if (openrpcPluginInstance === undefined) {
     throw new Error('openrpcPluginInstance is undefined');
   }
-  const openrpcDocument = await parseOpenRPCDocument(options.openrpcDocument);
+  const openrpcDocument = await parseOpenRPCDocument(options.openrpc.openrpcDocument);
 
   return {
     ...docsPluginInstance,
@@ -64,14 +67,14 @@ async function docsPluginEnhanced(
               if (item.label === 'Reference') {
                 item.items.push({
                   type: 'category',
-                  label: 'JSON-RPC',
+                  label: options.openrpc.sidebarLabel || 'JSON-RPC',
                   collapsible: true,
                   collapsed: true,
                   items: openrpcDocument.methods.map((method) => {
                     const href = join(
                       context.baseUrl,
                       options.path,
-                      options.openrpcPath,
+                      options.openrpc.path,
                       (method as MethodObject).name.toLowerCase(),
                     );
                     return {
@@ -138,16 +141,14 @@ const pluginExport = {
     const docOptions = {
       ...options,
     };
-    delete docOptions.openrpcDocument;
-    delete docOptions.openrpcPath;
+    delete docOptions.openrpc;
     const returns = pluginContentDocs.validateOptions({
       validate,
       options: docOptions,
     });
     return {
       ...returns,
-      openrpcDocument: options.openrpcDocument,
-      openrpcPath: options.openrpcPath,
+      openrpc: options.openrpc,
     };
   },
 };
