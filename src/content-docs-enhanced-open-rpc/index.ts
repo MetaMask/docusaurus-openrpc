@@ -18,7 +18,7 @@ export type DocusaurusOpenRPCOptions = {
     openrpcDocument: string;
     path: string;
     sidebarLabel: string;
-  }
+  };
   path: string;
 };
 
@@ -49,7 +49,9 @@ async function docsPluginEnhanced(
   if (openrpcPluginInstance === undefined) {
     throw new Error('openrpcPluginInstance is undefined');
   }
-  const openrpcDocument = await parseOpenRPCDocument(options.openrpc.openrpcDocument);
+  const openrpcDocument = await parseOpenRPCDocument(
+    options.openrpc.openrpcDocument,
+  );
 
   return {
     ...docsPluginInstance,

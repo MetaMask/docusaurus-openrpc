@@ -46,8 +46,10 @@ To use the plugin as an enhanced plugin-content-docs plugin, add the following t
           require("remark-docusaurus-tabs"),
         ],
         // @docusaurus-openrpc plugin options
-        openrpcDocument: "https://metamask.github.io/api-specs/latest/openrpc.json",
-        openrpcPath: "reference",
+        openrpc: {
+          openrpcDocument: "https://metamask.github.io/api-specs/latest/openrpc.json",
+          path: "reference",
+        }
       }),
     ],
 ```
