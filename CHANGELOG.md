@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0]
+### Uncategorized
+- Fixed coverage
+- Fixed coverage
+- Fixed linting + updated README
+- Fixed bump docs react + fix options
+
 ## [0.1.1]
 ### Uncategorized
 - Removed console.log
@@ -175,7 +182,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added semicolons back
 - Initial Commit
 
-[Unreleased]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.0.13...v0.1.0
 [0.0.13]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.0.12...v0.0.13
