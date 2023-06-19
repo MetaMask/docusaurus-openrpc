@@ -188,13 +188,5 @@ export default function docusaurusOpenRpc(
     //     .description('Does something')
     //     .action(() => {})
     // },
-
-    injectHtmlTags() {
-      return {
-        headTags: [
-          '<link rel="stylesheet" href="https://unpkg.com/@stoplight/elements/styles.min.css">',
-        ],
-      };
-    },
   };
 }
