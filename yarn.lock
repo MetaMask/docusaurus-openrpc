@@ -2916,7 +2916,7 @@ __metadata:
     "@metamask/eslint-config-jest": ^11.0.0
     "@metamask/eslint-config-nodejs": ^11.0.1
     "@metamask/eslint-config-typescript": ^11.0.0
-    "@metamask/open-rpc-docs-react": ^0.1.1
+    "@metamask/open-rpc-docs-react": ^0.1.2
     "@open-rpc/examples": ^1.7.0
     "@open-rpc/meta-schema": ^1.14.5
     "@open-rpc/schema-utils-js": ^1.16.1
@@ -3001,9 +3001,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@metamask/open-rpc-docs-react@npm:^0.1.1":
-  version: 0.1.1
-  resolution: "@metamask/open-rpc-docs-react@npm:0.1.1"
+"@metamask/open-rpc-docs-react@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "@metamask/open-rpc-docs-react@npm:0.1.2"
   dependencies:
     "@json-schema-tools/traverse": ^1.10.1
     "@open-rpc/examples": ^1.6.1
@@ -3022,7 +3022,7 @@ __metadata:
   peerDependencies:
     react: ^17.0.2
     react-dom: ^17.0.2
-  checksum: 6c85566abb24922a3eaba00156eb8b3c050803a5f8635aeafbab3072f71a7f4f23ebd61877d61e73357eab9cb48068eb9c85b2233de58bdb480f7df919ce2c2f
+  checksum: 2f9f0e1c8ed4292a9c7402273c02a84db78740966b64aec3cd325b8c279924b98dc8e63685e8fb37d4a05e0a0e491515f93af8b649e66106c3c2d9e529b2c740
   languageName: node
   linkType: hard
 
