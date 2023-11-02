@@ -111,5 +111,8 @@
       "@metamask/open-rpc-docs-react>@stoplight/mosaic>@fortawesome/fontawesome-svg-core": false,
       "@metamask/open-rpc-docs-react>@stoplight/mosaic>@fortawesome/fontawesome-svg-core>@fortawesome/fontawesome-common-types": false
     }
+  },
+  "resolutions": {
+    "@metamask/open-rpc-docs-react": "portal:/Users/shanejonas/code/metamask/openrpc-docs-react"
   }
 }
