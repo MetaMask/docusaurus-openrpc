@@ -100,6 +100,15 @@ export default function docusaurusOpenRpc(
         }),
       );
       if (loadedVersions === undefined) {
+        actions.addRoute({
+          path: join(context.baseUrl, options.path),
+          component: '@theme/OpenRPCDocIndex',
+          modules: {
+            // propName -> JSON file path
+            propsFile: propsFilePath,
+          },
+          exact: true,
+        });
         openrpcDocument.methods.forEach((method) => {
           actions.addRoute({
             path: join(
@@ -118,6 +127,20 @@ export default function docusaurusOpenRpc(
         return;
       }
       loadedVersions?.forEach((version: LoadedVersion) => {
+        actions.addRoute({
+          path: join(context.baseUrl, options.path),
+          component: '@theme/OpenRPCDocIndex',
+          modules: {
+            // propName -> JSON file path
+            propsFile: propsFilePath,
+            versionMetadata: aliasedSource(
+              `${docuHash(
+                `version-${version.versionName}-metadata-prop`,
+              )}.json`,
+            ),
+          },
+          exact: true,
+        });
         openrpcDocument.methods.forEach((method) => {
           actions.addRoute({
             path: join(

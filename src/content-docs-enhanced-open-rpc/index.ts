@@ -72,19 +72,31 @@ async function docsPluginEnhanced(
                   label: options.openrpc.sidebarLabel || 'JSON-RPC',
                   collapsible: true,
                   collapsed: true,
-                  items: openrpcDocument.methods.map((method) => {
-                    const href = join(
-                      context.baseUrl,
-                      options.path,
-                      options.openrpc.path,
-                      (method as MethodObject).name.toLowerCase(),
-                    );
-                    return {
-                      type: 'link',
-                      label: (method as MethodObject).name,
-                      href,
-                    };
-                  }),
+                  items: [
+                    {
+                      type: 'link' as const,
+                      label: openrpcDocument.info.title || 'JSON-RPC',
+                      href: join(
+                        context.baseUrl,
+                        options.path,
+                        options.openrpc.path,
+                      ),
+                    },
+                  ].concat(
+                    openrpcDocument.methods.map((method) => {
+                      const href = join(
+                        context.baseUrl,
+                        options.path,
+                        options.openrpc.path,
+                        (method as MethodObject).name.toLowerCase(),
+                      );
+                      return {
+                        type: 'link',
+                        label: (method as MethodObject).name,
+                        href,
+                      };
+                    }),
+                  ),
                 });
               }
             }
