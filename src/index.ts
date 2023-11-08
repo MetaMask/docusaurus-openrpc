@@ -101,7 +101,7 @@ export default function docusaurusOpenRpc(
       );
       if (loadedVersions === undefined) {
         actions.addRoute({
-          path: join(context.baseUrl, options.path),
+          path: join(context.baseUrl, options.path, 'json-rpc-api'),
           component: '@theme/OpenRPCDocIndex',
           modules: {
             // propName -> JSON file path
@@ -128,7 +128,7 @@ export default function docusaurusOpenRpc(
       }
       loadedVersions?.forEach((version: LoadedVersion) => {
         actions.addRoute({
-          path: join(context.baseUrl, options.path),
+          path: join(context.baseUrl, options.path, 'json-rpc-api'),
           component: '@theme/OpenRPCDocIndex',
           modules: {
             // propName -> JSON file path
