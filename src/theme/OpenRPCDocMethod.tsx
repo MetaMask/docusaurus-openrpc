@@ -69,14 +69,22 @@ const getExamplesFromMethod = (method?: MethodObject): ExamplePairingObject[] =>
 
 export default function OpenRPCDocMethod(props: any) {
   const {versionMetadata} = props;
+  let sidebar: Sidebar = [
+    {
+      type: 'link' as const,
+      label: props.propsFile.openrpcDocument.info.title || 'JSON-RPC',
+      href: props.propsFile.path,
+    },
+  ].concat(
+    props.propsFile.openrpcDocument.methods.map((method: MethodObject) => {
+      return {
+        type: 'link',
+        label: method.name,
+        href: join(props.propsFile.path, method.name.toLowerCase()),
+      };
+    }),
+  );
 
-  let sidebar: Sidebar = props.propsFile.openrpcDocument.methods.map((method: MethodObject) => {
-    return {
-      type: "link",
-      label: method.name,
-      href: join(props.propsFile.path, method.name.toLowerCase()),
-    }
-  });
   if (versionMetadata) {
     sidebar = Object.values(versionMetadata.docsSidebars)[0] as Sidebar;
   }
