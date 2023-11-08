@@ -86,32 +86,19 @@ async function docsPluginEnhanced(
                       'json-rpc-api',
                     ),
                   },
-                  items: [
-                    {
-                      type: 'link' as const,
-                      label: openrpcDocument.info.title || 'JSON-RPC',
-                      href: join(
-                        context.baseUrl,
-                        options.path,
-                        options.openrpc.path,
-                        'json-rpc-api',
-                      ),
-                    },
-                  ].concat(
-                    openrpcDocument.methods.map((method) => {
-                      const href = join(
-                        context.baseUrl,
-                        options.path,
-                        options.openrpc.path,
-                        (method as MethodObject).name.toLowerCase(),
-                      );
-                      return {
-                        type: 'link',
-                        label: (method as MethodObject).name,
-                        href,
-                      };
-                    }),
-                  ),
+                  items: openrpcDocument.methods.map((method) => {
+                    const href = join(
+                      context.baseUrl,
+                      options.path,
+                      options.openrpc.path,
+                      (method as MethodObject).name.toLowerCase(),
+                    );
+                    return {
+                      type: 'link',
+                      label: (method as MethodObject).name,
+                      href,
+                    };
+                  }),
                 });
               }
             }
