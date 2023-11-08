@@ -60,7 +60,7 @@ describe('docusaurus openrpc plugin', () => {
         },
       });
       expect(addRoute).toHaveBeenNthCalledWith(
-        2,
+        3,
         expect.objectContaining({ path: '/foo/subtraction' }),
       );
     });
@@ -93,7 +93,7 @@ describe('docusaurus openrpc plugin', () => {
         },
       });
       expect(addRoute).toHaveBeenNthCalledWith(
-        2,
+        3,
         expect.objectContaining({ path: '/foo/bar/baz/subtraction' }),
       );
     });
@@ -126,7 +126,7 @@ describe('docusaurus openrpc plugin', () => {
         },
       });
       expect(addRoute).toHaveBeenNthCalledWith(
-        2,
+        3,
         expect.objectContaining({ path: '/foo/bar/baz/subtraction' }),
       );
     });
