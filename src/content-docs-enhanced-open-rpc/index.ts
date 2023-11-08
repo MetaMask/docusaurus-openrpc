@@ -75,13 +75,12 @@ async function docsPluginEnhanced(
                   link: {
                     type: 'generated-index',
                     permalink: join(
-                      '/',
+                      context.baseUrl,
                       options.path,
                       options.openrpc.path,
                       'json-rpc-api',
                     ),
                     slug: join(
-                      '/',
                       options.path,
                       options.openrpc.path,
                       'json-rpc-api',
