@@ -65,8 +65,10 @@ export default function OpenRPCDocIndex(props: any) {
 
         <main className="docMainContainer" style={{ width: '100%' }}>
           <div className="container padding-top--md padding-bottom--lg">
-            <h1>{props.propsFile.openrpcDocument.info.title || 'JSON-RPC'}</h1>
-            <MarkdownDescription uiSchema={{}} source={props.propsFile.openrpcDocument.info?.description || defaultDescription} />
+            <article>
+              <h1>{props.propsFile.openrpcDocument.info.title || 'JSON-RPC'}</h1>
+              <MarkdownDescription uiSchema={{}} source={props.propsFile.openrpcDocument.info?.description || defaultDescription} />
+            </article>
           </div>
         </main>
       </div>
