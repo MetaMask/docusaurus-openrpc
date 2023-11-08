@@ -130,5 +130,30 @@ describe('docusaurus openrpc plugin', () => {
         expect.objectContaining({ path: '/foo/bar/baz/subtraction' }),
       );
     });
+    it('adds an index page by default', async () => {
+      const plugin = docusaurusOpenRpc({ baseUrl: '' } as LoadContext, {
+        id: 'foo',
+        openrpcDocument: 'https://anything.example',
+        path: 'foo',
+      });
+      const contentLoaded = plugin.contentLoaded as (
+        args: any,
+      ) => Promise<void>;
+
+      const addRoute = jest.fn();
+      await contentLoaded({
+        content: {
+          openrpcDocument: examples.simpleMath as any,
+        },
+        actions: {
+          addRoute,
+          createData: async () => Promise.resolve(),
+        },
+      });
+      expect(addRoute).toHaveBeenNthCalledWith(
+        1,
+        expect.objectContaining({ path: 'foo/json-rpc-api' }),
+      );
+    });
   });
 });
