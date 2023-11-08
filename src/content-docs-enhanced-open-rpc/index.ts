@@ -72,6 +72,21 @@ async function docsPluginEnhanced(
                   label: options.openrpc.sidebarLabel || 'JSON-RPC',
                   collapsible: true,
                   collapsed: true,
+                  link: {
+                    type: 'generated-index',
+                    permalink: join(
+                      '/',
+                      options.path,
+                      options.openrpc.path,
+                      'json-rpc-api',
+                    ),
+                    slug: join(
+                      '/',
+                      options.path,
+                      options.openrpc.path,
+                      'json-rpc-api',
+                    ),
+                  },
                   items: [
                     {
                       type: 'link' as const,
@@ -80,6 +95,7 @@ async function docsPluginEnhanced(
                         context.baseUrl,
                         options.path,
                         options.openrpc.path,
+                        'json-rpc-api',
                       ),
                     },
                   ].concat(
