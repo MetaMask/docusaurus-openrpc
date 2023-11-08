@@ -7,7 +7,6 @@ import {
   MethodObject,
 } from '@open-rpc/meta-schema';
 import { join } from 'path';
-import MDXContent from '@theme/MDXContent';
 
 const defaultDescription = `
 Explore the JSON-RPC API Documentation for a complete set of reference materials, detailed api descriptions, usage examples, and a live interactive method execution designed to help you test and understand API functionalities in real-time.
