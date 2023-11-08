@@ -136,7 +136,9 @@ export default function OpenRPCDocMethod(props: any) {
                 {!method &&
                   <div>Index</div>
                 }
-                {method && <Method method={method} components={{CodeBlock}} onExamplePairingChange={(examplePairing: ExamplePairingObject | undefined) => setSelectedExamplePairing(examplePairing)}/>}
+                <article>
+                  {method && <Method method={method} components={{CodeBlock}} onExamplePairingChange={(examplePairing: ExamplePairingObject | undefined) => setSelectedExamplePairing(examplePairing)}/>}
+                </article>
               </div>
 
               <div id="interactive-box" className="col col--5 interactive-right-sidebar table-of-contents__left-border thin-scrollbar">
