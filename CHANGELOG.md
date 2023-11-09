@@ -10,9 +10,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Uncategorized
 - Added default index page that uses title.description or a default description explaining what this plugin does.
 - Bump @babel/traverse from 7.21.5 to 7.23.2
-- After running yarn lint:fix
-- Fixing the indentation and ran prettier
-- Update README.md
 - Update README.md
 
 ## [0.2.2]
