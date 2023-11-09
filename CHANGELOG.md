@@ -8,17 +8,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.3.0]
 ### Uncategorized
-- Added test for index page addRoute
-- Fixed jest coverage
-- Fixed article wrapper to help with search crawling
-- Removed extra sidebar item
-- Fixed url issues
-- Fixed default route
-- Updated coverage with jest-it-up
-- Fixed coverage threshold
-- Changed OpenRPCDocMethod to handle sidebar case
-- Fixed expects in test to account for an extra addRoute call for the index page
-- Removed unused dep
 - Added default index page that uses title.description or a default description explaining what this plugin does.
 - Bump @babel/traverse from 7.21.5 to 7.23.2
 - After running yarn lint:fix
