@@ -7,10 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [0.3.0]
-### Uncategorized
-- Added default index page that uses title.description or a default description explaining what this plugin does.
-- Bump @babel/traverse from 7.21.5 to 7.23.2
-- Update README.md
+### Added
+- default index page that uses title.description or a default description explaining what this plugin does.
 
 ## [0.2.2]
 ### Uncategorized
