@@ -6,6 +6,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.1]
+### Uncategorized
+- Update CHANGELOG.md
+- Update CHANGELOG.md
+- Update CHANGELOG.md
+- 0.3.0
+- Added test for index page addRoute
+- Fixed jest coverage
+- Fixed article wrapper to help with search crawling
+- Removed extra sidebar item
+- Fixed url issues
+- Fixed default route
+- Updated coverage with jest-it-up
+- Fixed coverage threshold
+- Changed OpenRPCDocMethod to handle sidebar case
+- Fixed expects in test to account for an extra addRoute call for the index page
+- Removed unused dep
+- Added default index page that uses title.description or a default description explaining what this plugin does.
+- Bump @babel/traverse from 7.21.5 to 7.23.2
+- After running yarn lint:fix
+- Fixing the indentation and ran prettier
+- Update README.md
+- Update README.md
+
 ## [0.3.0]
 ### Added
 - default index page that uses title.description or a default description explaining what this plugin does.
@@ -196,7 +220,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added semicolons back
 - Initial Commit
 
-[Unreleased]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.3.1...HEAD
+[0.3.1]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.2.2...v0.3.0
 [0.2.2]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.2.0...v0.2.1
