@@ -27,27 +27,28 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@docusaurus/core": "2.4.3",
-    "@docusaurus/plugin-content-blog": "2.4.3",
-    "@docusaurus/plugin-content-docs": "2.4.3",
-    "@docusaurus/plugin-content-pages": "2.4.3",
-    "@docusaurus/plugin-debug": "2.4.3",
-    "@docusaurus/plugin-google-analytics": "2.4.3",
-    "@docusaurus/plugin-google-gtag": "2.4.3",
-    "@docusaurus/plugin-google-tag-manager": "2.4.3",
-    "@docusaurus/plugin-sitemap": "2.4.3",
-    "@docusaurus/theme-classic": "2.4.3",
-    "@docusaurus/theme-common": "2.4.3",
-    "@docusaurus/theme-search-algolia": "2.4.3",
-    "@docusaurus/types": "2.4.3",
-    "@docusaurus/utils": "2.4.3",
+    "@docusaurus/core": "^3.0.1",
+    "@docusaurus/plugin-content-blog": "^3.0.1",
+    "@docusaurus/plugin-content-docs": "^3.0.1",
+    "@docusaurus/plugin-content-pages": "^3.0.1",
+    "@docusaurus/plugin-debug": "^3.0.1",
+    "@docusaurus/plugin-google-analytics": "^3.0.1",
+    "@docusaurus/plugin-google-gtag": "^3.0.1",
+    "@docusaurus/plugin-google-tag-manager": "^3.0.1",
+    "@docusaurus/plugin-sitemap": "^3.0.1",
+    "@docusaurus/theme-classic": "^3.0.1",
+    "@docusaurus/theme-common": "^3.0.1",
+    "@docusaurus/theme-mermaid": "^3.0.1",
+    "@docusaurus/theme-search-algolia": "^3.0.1",
+    "@docusaurus/types": "^3.0.1",
+    "@docusaurus/utils": "^3.0.1",
     "@metamask/open-rpc-docs-react": "^0.1.2",
     "@open-rpc/schema-utils-js": "^1.16.1",
     "node-polyfill-webpack-plugin": "^2.0.1",
     "process": "^0.11.10"
   },
   "devDependencies": {
-    "@docusaurus/types": "2.4.3",
+    "@docusaurus/types": "^3.0.1",
     "@lavamoat/allow-scripts": "^2.0.3",
     "@metamask/auto-changelog": "^3.1.0",
     "@metamask/eslint-config": "^11.0.1",
@@ -78,13 +79,13 @@
     "rimraf": "^3.0.2",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.7.0",
-    "typescript": "^5.0.4"
+    "typescript": "^5.2.2"
   },
   "peerDependencies": {
-    "@docusaurus/core": "2.4.3",
-    "@docusaurus/theme-common": "2.4.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "@docusaurus/core": "^3.0.1",
+    "@docusaurus/theme-common": "^3.0.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "packageManager": "yarn@3.2.1",
   "engines": {
