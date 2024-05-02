@@ -64,8 +64,9 @@ export default function docusaurusOpenRpc(
   const aliasedSource = (source: string) =>
     `${posixPath(path.resolve(pluginDataDirRoot, options.id, source))}`;
 
+  console.log('OPTIONS=', typeof options.requestTemplate);
   let reqTemplate: any = {
-    js: 'await window.fetch(\n  "${serverUrl}",\n  {\n    method: "POST",\n    headers: {\n      "Content-Type": "application/json"\n    },\n    body: JSON.stringify(${jsonRpcRequest})\n  }\n)',
+    js: 'await window.fetch(\n  "${serverUrl}",\n  {\n    method: "POST",\n    headers: {\n      "Content-Type": "application/json"\n    },\n    body: JSON.stringify(${jsonRpcRequest})\n  }\n).then((res) => res.json());',
     curl: "curl -X POST -H 'Content-Type: application/json' --data ${jsonRpcRequest} ${serverUrl}",
     python:
       'import requests\n\nrequests.request(\n  "POST",\n  "${serverUrl}",\n  headers={\n    "Content-Type": "application/json"\n  },\n  data=${jsonRpcRequest}\n)',

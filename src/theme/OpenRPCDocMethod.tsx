@@ -143,7 +143,7 @@ export default function OpenRPCDocMethod(props: any) {
               </div>
 
               <div id="interactive-box" className="col col--5 interactive-right-sidebar table-of-contents__left-border thin-scrollbar">
-                {method && <InteractiveMethod method={method} components={{CodeBlock}} selectedExamplePairing={selectedExamplePairing as ExamplePairingObject} requestTemplate={props.propsFile.requestTemplate}/>}
+                {method && <InteractiveMethod openrpcDocument={props.propsFile.openrpcDocument} method={method} components={{CodeBlock}} selectedExamplePairing={selectedExamplePairing as ExamplePairingObject} requestTemplate={props.propsFile.requestTemplate}/>}
               </div>
             </div>
           </div>

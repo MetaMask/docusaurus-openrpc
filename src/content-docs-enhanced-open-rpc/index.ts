@@ -42,9 +42,9 @@ async function docsPluginEnhanced(
   const path = join(options.path, options.openrpc.path);
 
   const openrpcPluginInstance: any = openrpcPlugin(context, {
+    ...options.openrpc,
     id: options.id,
     path,
-    openrpcDocument: options.openrpc.openrpcDocument,
   });
   if (openrpcPluginInstance === undefined) {
     throw new Error('openrpcPluginInstance is undefined');
