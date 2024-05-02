@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 /* eslint-disable no-restricted-globals */
 /**
  * See https://v2.docusaurus.io/docs/lifecycle-apis if you need more help!
@@ -14,8 +15,6 @@ import path, { join } from 'path';
 
 // import {compile} from '@mdx-js/mdx'
 
-// import openRPCToMarkdown from './openrpc-to-mdx';
-
 /**
  * Put your plugin's options in here.
  *
@@ -28,6 +27,7 @@ export type DocusaurusOpenRPCOptions = {
   // either a file path, or uri to a document.
   openrpcDocument: string;
   path: string;
+  requestTemplate?: string | Record<string, string>;
 };
 
 /**
@@ -64,6 +64,25 @@ export default function docusaurusOpenRpc(
   const aliasedSource = (source: string) =>
     `${posixPath(path.resolve(pluginDataDirRoot, options.id, source))}`;
 
+  console.log('OPTIONS=', typeof options.requestTemplate);
+  let reqTemplate: any = {
+    js: 'await window.fetch(\n  "${serverUrl}",\n  {\n    method: "POST",\n    headers: {\n      "Content-Type": "application/json"\n    },\n    body: JSON.stringify(${jsonRpcRequest})\n  }\n).then((res) => res.json());',
+    curl: "curl -X POST -H 'Content-Type: application/json' --data ${jsonRpcRequest} ${serverUrl}",
+    python:
+      'import requests\n\nrequests.request(\n  "POST",\n  "${serverUrl}",\n  headers={\n    "Content-Type": "application/json"\n  },\n  data=${jsonRpcRequest}\n)',
+  };
+
+  if (typeof options.requestTemplate === 'string') {
+    reqTemplate = {
+      js: options.requestTemplate,
+    };
+  } else if (typeof options.requestTemplate === 'object') {
+    reqTemplate = {
+      ...reqTemplate,
+      ...options.requestTemplate,
+    };
+  }
+
   return {
     // change this to something unique, or caches may conflict!
     name: 'docusaurus-openrpc',
@@ -92,10 +111,12 @@ export default function docusaurusOpenRpc(
 
     async contentLoaded({ content, actions }) {
       const { openrpcDocument, loadedVersions } = content;
+      console.log('reqTemplate', reqTemplate);
       const propsFilePath = await actions.createData(
         'props.json',
         JSON.stringify({
           path: options.path,
+          requestTemplate: reqTemplate,
           openrpcDocument,
         }),
       );

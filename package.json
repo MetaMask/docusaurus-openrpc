@@ -16,6 +16,7 @@
     "build": "tsc --project tsconfig.build.json && cp src/theme/OpenRPCDocMethod.css dist/theme/OpenRPCDocMethod.css",
     "build:clean": "rimraf dist && yarn build",
     "build:watch": "yarn build && tsc --project tsconfig.build.json --watch",
+    "link:setup": "rm -rf ./node_modules/@docusaurus/theme-common",
     "lint": "yarn lint:eslint && yarn lint:misc --check && yarn lint:dependencies && yarn lint:changelog",
     "lint:changelog": "auto-changelog validate",
     "lint:dependencies": "depcheck",
@@ -111,5 +112,9 @@
       "@metamask/open-rpc-docs-react>@stoplight/mosaic>@fortawesome/fontawesome-svg-core": false,
       "@metamask/open-rpc-docs-react>@stoplight/mosaic>@fortawesome/fontawesome-svg-core>@fortawesome/fontawesome-common-types": false
     }
+  },
+  "resolutions": {
+    "@metamask/open-rpc-docs-react": "portal:/Users/shanejonas/code/metamask/openrpc-docs-react",
+    "joi": "17.6.0"
   }
 }

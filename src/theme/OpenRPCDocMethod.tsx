@@ -4,7 +4,6 @@ import {
   Sidebar,
 } from "@docusaurus/plugin-content-docs/src/sidebars/types";
 import Layout from '@theme/Layout';
-const {useDocRouteMetadata} = require('@docusaurus/theme-common/internal');
 import {ExamplePairingObject, MethodObject, ContentDescriptorObject} from '@open-rpc/meta-schema';
 import { InteractiveMethod, Method} from '@metamask/open-rpc-docs-react';
 import { join } from 'path';
@@ -105,6 +104,8 @@ export default function OpenRPCDocMethod(props: any) {
   method.examples = method.examples || getExamplesFromMethod(method);
   const [selectedExamplePairing, setSelectedExamplePairing] = React.useState<ExamplePairingObject | undefined>(method.examples[0]);
 
+  // requestTemplate
+
   return (
     <Layout>
       <div style={{ display: "flex", width: "100%", flex: "1 0",  }} className="docusaurus-openrpc">
@@ -142,7 +143,7 @@ export default function OpenRPCDocMethod(props: any) {
               </div>
 
               <div id="interactive-box" className="col col--5 interactive-right-sidebar table-of-contents__left-border thin-scrollbar">
-                {method && <InteractiveMethod method={method} components={{CodeBlock}} selectedExamplePairing={selectedExamplePairing as ExamplePairingObject}/>}
+                {method && <InteractiveMethod openrpcDocument={props.propsFile.openrpcDocument} method={method} components={{CodeBlock}} selectedExamplePairing={selectedExamplePairing as ExamplePairingObject} requestTemplate={props.propsFile.requestTemplate}/>}
               </div>
             </div>
           </div>
