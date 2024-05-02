@@ -2856,13 +2856,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@json-rpc-specification/meta-schema@npm:^1.0.6":
-  version: 1.0.6
-  resolution: "@json-rpc-specification/meta-schema@npm:1.0.6"
-  checksum: 2eb9c6c6c73bb38350c7180d1ad3c5b8462406926cae753741895b457d7b1b9f0b74148daf3462bb167cef39efdd1d9090308edf4d4938956863acb643c146eb
-  languageName: node
-  linkType: hard
-
 "@json-schema-spec/json-pointer@npm:^0.1.2":
   version: 0.1.2
   resolution: "@json-schema-spec/json-pointer@npm:0.1.2"
@@ -3586,7 +3579,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sideway/formula@npm:^3.0.1":
+"@sideway/formula@npm:^3.0.0":
   version: 3.0.1
   resolution: "@sideway/formula@npm:3.0.1"
   checksum: e4beeebc9dbe2ff4ef0def15cec0165e00d1612e3d7cea0bc9ce5175c3263fc2c818b679bd558957f49400ee7be9d4e5ac90487e1625b4932e15c4aa7919c57a
@@ -10959,16 +10952,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"joi@npm:^17.6.0":
-  version: 17.11.0
-  resolution: "joi@npm:17.11.0"
+"joi@npm:17.6.0":
+  version: 17.6.0
+  resolution: "joi@npm:17.6.0"
   dependencies:
     "@hapi/hoek": ^9.0.0
     "@hapi/topo": ^5.0.0
     "@sideway/address": ^4.1.3
-    "@sideway/formula": ^3.0.1
+    "@sideway/formula": ^3.0.0
     "@sideway/pinpoint": ^2.0.0
-  checksum: 3a4e9ecba345cdafe585e7ed8270a44b39718e11dff3749aa27e0001a63d578b75100c062be28e6f48f960b594864034e7a13833f33fbd7ad56d5ce6b617f9bf
+  checksum: eaf62f6c02f2edb1042f1ab04fc23a5918a2cb8f54bec84c6e1033624d8a462c10ae9518af55a3ba84f1793960450d58094eda308e7ef93c17edd4e3c8ef31d5
   languageName: node
   linkType: hard
 
