@@ -5,12 +5,16 @@
 
 import { LoadedVersion } from '@docusaurus/plugin-content-docs';
 import { Plugin as DocusaurusPlugin, LoadContext } from '@docusaurus/types';
-import { docuHash, posixPath } from '@docusaurus/utils';
 import { MethodObject, Methods, OpenrpcDocument } from '@open-rpc/meta-schema';
 import { parseOpenRPCDocument } from '@open-rpc/schema-utils-js';
 import NodePolyfillPlugin from 'node-polyfill-webpack-plugin';
 // eslint-disable-next-line import/no-nodejs-modules
-import path, { join } from 'path';
+import { join } from 'path';
+
+const {
+  toVersionMetadataProp,
+  // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
+} = require('@docusaurus/plugin-content-docs/src/props');
 
 // import {compile} from '@mdx-js/mdx'
 
@@ -50,20 +54,6 @@ export default function docusaurusOpenRpc(
   context: LoadContext,
   options: DocusaurusOpenRPCOptions,
 ): DocusaurusPlugin<DocusaurusOpenRPCContent> {
-  const { generatedFilesDir } = context;
-
-  let pluginDataDirRoot: string;
-
-  if (generatedFilesDir) {
-    pluginDataDirRoot = path.join(
-      generatedFilesDir,
-      'docusaurus-plugin-content-docs',
-    );
-  }
-
-  const aliasedSource = (source: string) =>
-    `${posixPath(path.resolve(pluginDataDirRoot, options.id, source))}`;
-
   return {
     // change this to something unique, or caches may conflict!
     name: 'docusaurus-openrpc',
@@ -126,18 +116,18 @@ export default function docusaurusOpenRpc(
         });
         return;
       }
-      loadedVersions?.forEach((version: LoadedVersion) => {
+      const promises = loadedVersions?.map(async (version: LoadedVersion) => {
+        const metadataFilePath = await actions.createData(
+          `version-${version.versionName}-metadata-prop.json`,
+          JSON.stringify(toVersionMetadataProp(options.id, version)),
+        );
         actions.addRoute({
           path: join(context.baseUrl, options.path, 'json-rpc-api'),
           component: '@theme/OpenRPCDocIndex',
           modules: {
             // propName -> JSON file path
             propsFile: propsFilePath,
-            versionMetadata: aliasedSource(
-              `${docuHash(
-                `version-${version.versionName}-metadata-prop`,
-              )}.json`,
-            ),
+            versionMetadata: metadataFilePath,
           },
           exact: true,
         });
@@ -152,16 +142,13 @@ export default function docusaurusOpenRpc(
             modules: {
               // propName -> JSON file path
               propsFile: propsFilePath,
-              versionMetadata: aliasedSource(
-                `${docuHash(
-                  `version-${version.versionName}-metadata-prop`,
-                )}.json`,
-              ),
+              versionMetadata: metadataFilePath,
             },
             exact: true,
           });
         });
       });
+      await Promise.all(promises);
     },
 
     // async postBuild(props) {
