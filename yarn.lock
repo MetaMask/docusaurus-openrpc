@@ -3453,6 +3453,7 @@ __metadata:
     "@open-rpc/meta-schema": ^1.14.5
     "@open-rpc/schema-utils-js": ^1.16.1
     "@types/jest": ^28.1.6
+    "@types/lodash": ^4.17.1
     "@types/node": ^18.0.0
     "@types/react": ^18.0.0
     "@types/react-dom": ^18.0.0
@@ -4850,6 +4851,13 @@ __metadata:
   version: 0.0.29
   resolution: "@types/json5@npm:0.0.29"
   checksum: e60b153664572116dfea673c5bda7778dbff150498f44f998e34b5886d8afc47f16799280e4b6e241c0472aef1bc36add771c569c68fc5125fc2ae519a3eb9ac
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:^4.17.1":
+  version: 4.17.1
+  resolution: "@types/lodash@npm:4.17.1"
+  checksum: 01984d5b44c09ef45258f8ac6d0cf926900624064722d51a020ba179e5d4a293da0068fb278d87dc695586afe7ebd3362ec57f5c0e7c4f6c1fab9d04a80e77f5
   languageName: node
   linkType: hard
 

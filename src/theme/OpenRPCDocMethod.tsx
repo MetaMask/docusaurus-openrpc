@@ -4,7 +4,6 @@ import {
   Sidebar,
 } from "@docusaurus/plugin-content-docs/src/sidebars/types";
 import Layout from '@theme/Layout';
-const {useDocRouteMetadata} = require('@docusaurus/theme-common/internal');
 import {ExamplePairingObject, MethodObject, ContentDescriptorObject} from '@open-rpc/meta-schema';
 import { InteractiveMethod, Method} from '@metamask/open-rpc-docs-react';
 import { join } from 'path';
