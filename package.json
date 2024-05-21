@@ -1,6 +1,6 @@
 {
   "name": "@metamask/docusaurus-openrpc",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "A Docusaurus plugin for generating interactive documentation from your OpenRPC document",
   "repository": {
     "type": "git",
