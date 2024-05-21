@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.1]
+### Uncategorized
+- fix: updated jest coverage func settings
+- fix: updated jest coverage settings
+- fix: added babel & updated jest config for resolve test issue
+- fix: update for v3 breaking changes of content-docs
+
 ## [0.4.0]
 ### Uncategorized
 - feat(dependency): updated docusaurus version to 3
@@ -226,7 +233,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added semicolons back
 - Initial Commit
 
-[Unreleased]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.4.1...HEAD
+[0.4.1]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.3.1...v0.4.0
 [0.3.1]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/MetaMask/docusaurus-openrpc/compare/v0.2.2...v0.3.0
