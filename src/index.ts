@@ -16,10 +16,6 @@ const {
   // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
 } = require('@docusaurus/plugin-content-docs/src/props');
 
-// import {compile} from '@mdx-js/mdx'
-
-// import openRPCToMarkdown from './openrpc-to-mdx';
-
 /**
  * Put your plugin's options in here.
  *
