@@ -6,6 +6,10 @@
     "type": "git",
     "url": "https://github.com/MetaMask/docusaurus-openrpc"
   },
+  "homepage": "https://github.com/MetaMask/docusaurus-openrpc",
+  "bugs": {
+    "url": "https://github.com/MetaMask/docusaurus-openrpc/issues"
+  },
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
